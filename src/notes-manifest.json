@@ -1,0 +1,226 @@
+[
+  {
+    "id": "aws",
+    "name": "AWS",
+    "folder": "AWS_Notes",
+    "notes": [
+      {
+        "id": "01-aws-global-infrastructure",
+        "title": "AWS Global Infrastructure",
+        "type": "md",
+        "file": "01_AWS_Global_Infrastructure.md",
+        "path": "/AWS_Notes/01_AWS_Global_Infrastructure.md"
+      },
+      {
+        "id": "02-cloud-architecture",
+        "title": "Cloud Architecture",
+        "type": "md",
+        "file": "02_Cloud_Architecture.md",
+        "path": "/AWS_Notes/02_Cloud_Architecture.md"
+      },
+      {
+        "id": "03-management-and-development-tools",
+        "title": "Management and Development Tools",
+        "type": "md",
+        "file": "03_Management_and_Development_Tools.md",
+        "path": "/AWS_Notes/03_Management_and_Development_Tools.md"
+      },
+      {
+        "id": "04-shared-responsibility-model",
+        "title": "Shared Responsibility Model",
+        "type": "md",
+        "file": "04_Shared_Responsibility_Model.md",
+        "path": "/AWS_Notes/04_Shared_Responsibility_Model.md"
+      },
+      {
+        "id": "05-computing-services",
+        "title": "Computing Services",
+        "type": "md",
+        "file": "05_Computing_Services.md",
+        "path": "/AWS_Notes/05_Computing_Services.md"
+      },
+      {
+        "id": "06-storage-services",
+        "title": "Storage Services",
+        "type": "md",
+        "file": "06_Storage_Services.md",
+        "path": "/AWS_Notes/06_Storage_Services.md"
+      },
+      {
+        "id": "07-databases",
+        "title": "Databases",
+        "type": "md",
+        "file": "07_Databases.md",
+        "path": "/AWS_Notes/07_Databases.md"
+      },
+      {
+        "id": "08-networks",
+        "title": "Networks",
+        "type": "md",
+        "file": "08_Networks.md",
+        "path": "/AWS_Notes/08_Networks.md"
+      },
+      {
+        "id": "09-ec2",
+        "title": "EC2",
+        "type": "md",
+        "file": "09_EC2.md",
+        "path": "/AWS_Notes/09_EC2.md"
+      },
+      {
+        "id": "10-identity",
+        "title": "Identity",
+        "type": "md",
+        "file": "10_Identity.md",
+        "path": "/AWS_Notes/10_Identity.md"
+      },
+      {
+        "id": "11-application-integration",
+        "title": "Application Integration",
+        "type": "md",
+        "file": "11_Application_Integration.md",
+        "path": "/AWS_Notes/11_Application_Integration.md"
+      },
+      {
+        "id": "12-containers-and-virtualization",
+        "title": "Containers and Virtualization",
+        "type": "md",
+        "file": "12_Containers_and_Virtualization.md",
+        "path": "/AWS_Notes/12_Containers_and_Virtualization.md"
+      },
+      {
+        "id": "13-governance",
+        "title": "Governance",
+        "type": "md",
+        "file": "13_Governance.md",
+        "path": "/AWS_Notes/13_Governance.md"
+      },
+      {
+        "id": "14-business-centric-services",
+        "title": "Business Centric Services",
+        "type": "md",
+        "file": "14_Business_Centric_Services.md",
+        "path": "/AWS_Notes/14_Business_Centric_Services.md"
+      },
+      {
+        "id": "15-provisioning",
+        "title": "Provisioning",
+        "type": "md",
+        "file": "15_Provisioning.md",
+        "path": "/AWS_Notes/15_Provisioning.md"
+      },
+      {
+        "id": "16-serverless",
+        "title": "Serverless",
+        "type": "md",
+        "file": "16_Serverless.md",
+        "path": "/AWS_Notes/16_Serverless.md"
+      },
+      {
+        "id": "17-windows-on-aws",
+        "title": "Windows on AWS",
+        "type": "md",
+        "file": "17_Windows_on_AWS.md",
+        "path": "/AWS_Notes/17_Windows_on_AWS.md"
+      },
+      {
+        "id": "18-logging",
+        "title": "Logging",
+        "type": "md",
+        "file": "18_Logging.md",
+        "path": "/AWS_Notes/18_Logging.md"
+      },
+      {
+        "id": "19-ml-ai-and-big-data",
+        "title": "ML AI and Big Data",
+        "type": "md",
+        "file": "19_ML_AI_and_Big_Data.md",
+        "path": "/AWS_Notes/19_ML_AI_and_Big_Data.md"
+      },
+      {
+        "id": "20-well-architected-framework",
+        "title": "Well Architected Framework",
+        "type": "md",
+        "file": "20_Well_Architected_Framework.md",
+        "path": "/AWS_Notes/20_Well_Architected_Framework.md"
+      },
+      {
+        "id": "21-tco-and-migration",
+        "title": "TCO and Migration",
+        "type": "md",
+        "file": "21_TCO_and_Migration.md",
+        "path": "/AWS_Notes/21_TCO_and_Migration.md"
+      },
+      {
+        "id": "22-billing-pricing-and-support",
+        "title": "Billing Pricing and Support",
+        "type": "md",
+        "file": "22_Billing_Pricing_and_Support.md",
+        "path": "/AWS_Notes/22_Billing_Pricing_and_Support.md"
+      },
+      {
+        "id": "23-security",
+        "title": "Security",
+        "type": "md",
+        "file": "23_Security.md",
+        "path": "/AWS_Notes/23_Security.md"
+      },
+      {
+        "id": "24-exam-initialisms-and-acronyms",
+        "title": "Exam Initialisms and Acronyms",
+        "type": "md",
+        "file": "24_Exam_Initialisms_and_Acronyms.md",
+        "path": "/AWS_Notes/24_Exam_Initialisms_and_Acronyms.md"
+      }
+    ]
+  },
+  {
+    "id": "llm",
+    "name": "LLM",
+    "folder": "LLM_Notes",
+    "notes": [
+      {
+        "id": "ai-engineer-roadmap",
+        "title": "AI Engineer Roadmap",
+        "type": "pdf",
+        "file": "AI_Engineer_Roadmap.pdf",
+        "path": "/LLM_Notes/AI_Engineer_Roadmap.pdf"
+      },
+      {
+        "id": "how-llm-works-attention",
+        "title": "how llm works attention",
+        "type": "md",
+        "file": "how-llm-works-attention.md",
+        "path": "/LLM_Notes/how-llm-works-attention.md"
+      },
+      {
+        "id": "how-llm-works-embeddings",
+        "title": "how llm works embeddings",
+        "type": "md",
+        "file": "how-llm-works-embeddings.md",
+        "path": "/LLM_Notes/how-llm-works-embeddings.md"
+      },
+      {
+        "id": "how-llm-works",
+        "title": "how llm works",
+        "type": "md",
+        "file": "how-llm-works.md",
+        "path": "/LLM_Notes/how-llm-works.md"
+      }
+    ]
+  },
+  {
+    "id": "hld",
+    "name": "HLD",
+    "folder": "HLD_Notes",
+    "notes": [
+      {
+        "id": "url-shortener-tinyurl",
+        "title": "url shortener tinyurl",
+        "type": "md",
+        "file": "url-shortener-tinyurl.md",
+        "path": "/HLD_Notes/url-shortener-tinyurl.md"
+      }
+    ]
+  }
+]
