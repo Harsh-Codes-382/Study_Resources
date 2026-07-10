@@ -33,7 +33,7 @@ export default function Footer() {
 
         <span className="nb-foot-right">
           <a
-            href="https://github.com/your-username/study_notes"
+            href="https://github.com/Harsh-Codes-382/Study_Resources"
             target="_blank"
             rel="noopener"
             aria-label="Source on GitHub"
