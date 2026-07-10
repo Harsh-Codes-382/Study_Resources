@@ -1,5 +1,3 @@
-// src/data/categories.js
-//
 // Merges the auto-generated file manifest with per-category presentation
 // (icon, accent colour, blurb). To add a whole new category, just create a
 // new folder like  public/DEVOPS_Notes/  and add a META entry keyed by its
@@ -33,6 +31,11 @@ const META = {
     icon: Cpu,
     accent: "#c084fc",
     blurb: "Kernel, scheduling, memory & concurrency",
+  },
+  cn: {
+    icon: Network,
+    accent: "#38bdf8",
+    blurb: "OSI, TCP/IP, protocols & the wire",
   },
 };
 

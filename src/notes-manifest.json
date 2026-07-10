@@ -231,6 +231,83 @@
     ]
   },
   {
+    "id": "cn",
+    "name": "CN",
+    "folder": "CN_Notes",
+    "notes": [
+      {
+        "id": "01-networks-and-topologies",
+        "title": "Networks and Topologies",
+        "type": "md",
+        "file": "01_Networks_and_Topologies.md",
+        "path": "/CN_Notes/01_Networks_and_Topologies.md"
+      },
+      {
+        "id": "02-types-of-networks-by-area",
+        "title": "Types of Networks by Area",
+        "type": "md",
+        "file": "02_Types_of_Networks_by_Area.md",
+        "path": "/CN_Notes/02_Types_of_Networks_by_Area.md"
+      },
+      {
+        "id": "03-vpn",
+        "title": "VPN",
+        "type": "md",
+        "file": "03_VPN.md",
+        "path": "/CN_Notes/03_VPN.md"
+      },
+      {
+        "id": "04-ipv4-addressing-and-classes",
+        "title": "IPv4 Addressing and Classes",
+        "type": "md",
+        "file": "04_IPv4_Addressing_and_Classes.md",
+        "path": "/CN_Notes/04_IPv4_Addressing_and_Classes.md"
+      },
+      {
+        "id": "05-osi-model",
+        "title": "OSI Model",
+        "type": "md",
+        "file": "05_OSI_Model.md",
+        "path": "/CN_Notes/05_OSI_Model.md"
+      },
+      {
+        "id": "06-tcp-ip-model-and-tcp-vs-udp",
+        "title": "TCP IP Model and TCP vs UDP",
+        "type": "md",
+        "file": "06_TCP_IP_Model_and_TCP_vs_UDP.md",
+        "path": "/CN_Notes/06_TCP_IP_Model_and_TCP_vs_UDP.md"
+      },
+      {
+        "id": "07-dns-http-https-smtp",
+        "title": "DNS HTTP HTTPS SMTP",
+        "type": "md",
+        "file": "07_DNS_HTTP_HTTPS_SMTP.md",
+        "path": "/CN_Notes/07_DNS_HTTP_HTTPS_SMTP.md"
+      },
+      {
+        "id": "08-important-protocols",
+        "title": "Important Protocols",
+        "type": "md",
+        "file": "08_Important_Protocols.md",
+        "path": "/CN_Notes/08_Important_Protocols.md"
+      },
+      {
+        "id": "09-network-devices",
+        "title": "Network Devices",
+        "type": "md",
+        "file": "09_Network_Devices.md",
+        "path": "/CN_Notes/09_Network_Devices.md"
+      },
+      {
+        "id": "10-what-happens-when-you-type-url-and-reference-nuggets",
+        "title": "What Happens When You Type URL and Reference Nuggets",
+        "type": "md",
+        "file": "10_What_Happens_When_You_Type_URL_and_Reference_Nuggets.md",
+        "path": "/CN_Notes/10_What_Happens_When_You_Type_URL_and_Reference_Nuggets.md"
+      }
+    ]
+  },
+  {
     "id": "os",
     "name": "OS",
     "folder": "OS_Notes",
