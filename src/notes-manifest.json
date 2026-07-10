@@ -202,7 +202,7 @@
       },
       {
         "id": "how-llm-works-part2-sampling",
-        "title": "how llm works sampling",
+        "title": "how llm works part2 sampling",
         "type": "md",
         "file": "how-llm-works-part2-sampling.md",
         "path": "/LLM_Notes/how-llm-works-part2-sampling.md"
@@ -227,6 +227,202 @@
         "type": "md",
         "file": "url-shortener-tinyurl.md",
         "path": "/HLD_Notes/url-shortener-tinyurl.md"
+      }
+    ]
+  },
+  {
+    "id": "os",
+    "name": "OS",
+    "folder": "OS_Notes",
+    "notes": [
+      {
+        "id": "01-introduction-to-os",
+        "title": "Introduction to OS",
+        "type": "md",
+        "file": "01_Introduction_to_OS.md",
+        "path": "/OS_Notes/01_Introduction_to_OS.md"
+      },
+      {
+        "id": "02-types-of-os",
+        "title": "Types of OS",
+        "type": "md",
+        "file": "02_Types_of_OS.md",
+        "path": "/OS_Notes/02_Types_of_OS.md"
+      },
+      {
+        "id": "03-multitasking-vs-multithreading",
+        "title": "Multitasking vs Multithreading",
+        "type": "md",
+        "file": "03_Multitasking_vs_Multithreading.md",
+        "path": "/OS_Notes/03_Multitasking_vs_Multithreading.md"
+      },
+      {
+        "id": "04-components-of-os",
+        "title": "Components of OS",
+        "type": "md",
+        "file": "04_Components_of_OS.md",
+        "path": "/OS_Notes/04_Components_of_OS.md"
+      },
+      {
+        "id": "05-system-calls",
+        "title": "System Calls",
+        "type": "md",
+        "file": "05_System_Calls.md",
+        "path": "/OS_Notes/05_System_Calls.md"
+      },
+      {
+        "id": "06-boot-process",
+        "title": "Boot Process",
+        "type": "md",
+        "file": "06_Boot_Process.md",
+        "path": "/OS_Notes/06_Boot_Process.md"
+      },
+      {
+        "id": "07-32bit-vs-64bit-os",
+        "title": "32bit vs 64bit OS",
+        "type": "md",
+        "file": "07_32bit_vs_64bit_OS.md",
+        "path": "/OS_Notes/07_32bit_vs_64bit_OS.md"
+      },
+      {
+        "id": "08-storage-devices-basics",
+        "title": "Storage Devices Basics",
+        "type": "md",
+        "file": "08_Storage_Devices_Basics.md",
+        "path": "/OS_Notes/08_Storage_Devices_Basics.md"
+      },
+      {
+        "id": "09-introduction-to-process",
+        "title": "Introduction to Process",
+        "type": "md",
+        "file": "09_Introduction_to_Process.md",
+        "path": "/OS_Notes/09_Introduction_to_Process.md"
+      },
+      {
+        "id": "10-process-states-and-queues",
+        "title": "Process States and Queues",
+        "type": "md",
+        "file": "10_Process_States_and_Queues.md",
+        "path": "/OS_Notes/10_Process_States_and_Queues.md"
+      },
+      {
+        "id": "11-swapping-contextswitching-orphan-zombie",
+        "title": "Swapping ContextSwitching Orphan Zombie",
+        "type": "md",
+        "file": "11_Swapping_ContextSwitching_Orphan_Zombie.md",
+        "path": "/OS_Notes/11_Swapping_ContextSwitching_Orphan_Zombie.md"
+      },
+      {
+        "id": "12-scheduling-fcfs-and-convoy-effect",
+        "title": "Scheduling FCFS and Convoy Effect",
+        "type": "md",
+        "file": "12_Scheduling_FCFS_and_Convoy_Effect.md",
+        "path": "/OS_Notes/12_Scheduling_FCFS_and_Convoy_Effect.md"
+      },
+      {
+        "id": "13-cpu-scheduling-sjf-priority-rr",
+        "title": "CPU Scheduling SJF Priority RR",
+        "type": "md",
+        "file": "13_CPU_Scheduling_SJF_Priority_RR.md",
+        "path": "/OS_Notes/13_CPU_Scheduling_SJF_Priority_RR.md"
+      },
+      {
+        "id": "14-mlq-and-mlfq",
+        "title": "MLQ and MLFQ",
+        "type": "md",
+        "file": "14_MLQ_and_MLFQ.md",
+        "path": "/OS_Notes/14_MLQ_and_MLFQ.md"
+      },
+      {
+        "id": "15-introduction-to-concurrency",
+        "title": "Introduction to Concurrency",
+        "type": "md",
+        "file": "15_Introduction_to_Concurrency.md",
+        "path": "/OS_Notes/15_Introduction_to_Concurrency.md"
+      },
+      {
+        "id": "16-critical-section-problem",
+        "title": "Critical Section Problem",
+        "type": "md",
+        "file": "16_Critical_Section_Problem.md",
+        "path": "/OS_Notes/16_Critical_Section_Problem.md"
+      },
+      {
+        "id": "17-conditional-variables-and-semaphores",
+        "title": "Conditional Variables and Semaphores",
+        "type": "md",
+        "file": "17_Conditional_Variables_and_Semaphores.md",
+        "path": "/OS_Notes/17_Conditional_Variables_and_Semaphores.md"
+      },
+      {
+        "id": "18-dining-philosophers-problem",
+        "title": "Dining Philosophers Problem",
+        "type": "md",
+        "file": "18_Dining_Philosophers_Problem.md",
+        "path": "/OS_Notes/18_Dining_Philosophers_Problem.md"
+      },
+      {
+        "id": "19-deadlock-part-1",
+        "title": "Deadlock Part 1",
+        "type": "md",
+        "file": "19_Deadlock_Part_1.md",
+        "path": "/OS_Notes/19_Deadlock_Part_1.md"
+      },
+      {
+        "id": "20-deadlock-part-2",
+        "title": "Deadlock Part 2",
+        "type": "md",
+        "file": "20_Deadlock_Part_2.md",
+        "path": "/OS_Notes/20_Deadlock_Part_2.md"
+      },
+      {
+        "id": "21-memory-management-contiguous-allocation",
+        "title": "Memory Management Contiguous Allocation",
+        "type": "md",
+        "file": "21_Memory_Management_Contiguous_Allocation.md",
+        "path": "/OS_Notes/21_Memory_Management_Contiguous_Allocation.md"
+      },
+      {
+        "id": "22-free-space-management",
+        "title": "Free Space Management",
+        "type": "md",
+        "file": "22_Free_Space_Management.md",
+        "path": "/OS_Notes/22_Free_Space_Management.md"
+      },
+      {
+        "id": "23-paging",
+        "title": "Paging",
+        "type": "md",
+        "file": "23_Paging.md",
+        "path": "/OS_Notes/23_Paging.md"
+      },
+      {
+        "id": "24-segmentation",
+        "title": "Segmentation",
+        "type": "md",
+        "file": "24_Segmentation.md",
+        "path": "/OS_Notes/24_Segmentation.md"
+      },
+      {
+        "id": "25-virtual-memory-demand-paging-page-faults",
+        "title": "Virtual Memory Demand Paging Page Faults",
+        "type": "md",
+        "file": "25_Virtual_Memory_Demand_Paging_Page_Faults.md",
+        "path": "/OS_Notes/25_Virtual_Memory_Demand_Paging_Page_Faults.md"
+      },
+      {
+        "id": "26-page-replacement-algorithms",
+        "title": "Page Replacement Algorithms",
+        "type": "md",
+        "file": "26_Page_Replacement_Algorithms.md",
+        "path": "/OS_Notes/26_Page_Replacement_Algorithms.md"
+      },
+      {
+        "id": "27-thrashing",
+        "title": "Thrashing",
+        "type": "md",
+        "file": "27_Thrashing.md",
+        "path": "/OS_Notes/27_Thrashing.md"
       }
     ]
   }

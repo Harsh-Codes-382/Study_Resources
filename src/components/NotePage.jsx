@@ -45,6 +45,21 @@ export default function NotePage() {
     };
   }, [note]);
 
+  // Render any Mermaid diagrams once the note HTML is in the DOM. Loaded lazily
+  // so the ~viewer-only mermaid bundle isn't in the initial payload.
+  useEffect(() => {
+    if (!html || !html.includes('class="mermaid"')) return;
+    let alive = true;
+    import("mermaid").then(({ default: mermaid }) => {
+      if (!alive) return;
+      mermaid.initialize({ startOnLoad: false, theme: "dark", securityLevel: "loose" });
+      mermaid.run({ querySelector: ".nb-md .mermaid" });
+    });
+    return () => {
+      alive = false;
+    };
+  }, [html]);
+
   if (!category || !note) {
     return (
       <Layout>

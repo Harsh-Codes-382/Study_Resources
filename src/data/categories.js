@@ -29,6 +29,11 @@ const META = {
     accent: "#4ade80",
     blurb: "Object modelling & low-level design",
   },
+  os: {
+    icon: Cpu,
+    accent: "#c084fc",
+    blurb: "Kernel, scheduling, memory & concurrency",
+  },
 };
 
 const FALLBACK = { icon: Folder, accent: "#8497a8", blurb: "" };
@@ -46,8 +51,7 @@ export const CATEGORIES = generated.map((c) => {
   };
 });
 
-export const findCategory = (id) =>
-  CATEGORIES.find((c) => c.id === id) || null;
+export const findCategory = (id) => CATEGORIES.find((c) => c.id === id) || null;
 
 export const findNote = (categoryId, noteId) => {
   const c = findCategory(categoryId);

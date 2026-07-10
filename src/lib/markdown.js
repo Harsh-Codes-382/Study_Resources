@@ -66,8 +66,10 @@ export function mdToHtml(md, basePath = "/") {
     const line = lines[i];
 
     // fenced code block
-    if (/^```/.test(line)) {
+    const fence = line.match(/^```\s*([\w-]*)/);
+    if (fence) {
       closeList();
+      const lang = fence[1].toLowerCase();
       i++;
       let code = "";
       while (i < lines.length && !/^```/.test(lines[i])) {
@@ -75,7 +77,14 @@ export function mdToHtml(md, basePath = "/") {
         i++;
       }
       i++; // closing fence
-      html += `<pre><code>${esc(code.replace(/\n$/, ""))}</code></pre>`;
+      const body = esc(code.replace(/\n$/, ""));
+      // Mermaid blocks become a container the client renders after mount
+      // (see the mermaid.run() pass in NotePage). The escaped source round-trips
+      // back to plain text via the DOM, which is what mermaid reads.
+      html +=
+        lang === "mermaid"
+          ? `<div class="mermaid">${body}</div>`
+          : `<pre><code>${body}</code></pre>`;
       continue;
     }
 

@@ -136,6 +136,13 @@ body { display: block; place-items: normal; }
 .nb-md img{ max-width:100%; height:auto; display:block; margin:1.1em 0;
   border:1px solid var(--border); border-radius:8px; background:#0a0f15; }
 
+/* Mermaid diagrams (rendered client-side after mount) */
+.nb-md .mermaid{ margin:1.2em 0; text-align:center; line-height:normal; }
+.nb-md .mermaid svg{ max-width:100%; height:auto; }
+.nb-md .mermaid:not([data-processed]){ color:var(--faint); font-family:var(--mono);
+  font-size:12px; background:#0a0f15; border:1px solid var(--border); border-radius:9px;
+  padding:14px 16px; text-align:left; white-space:pre-wrap; }
+
 /* GitHub-style tables */
 .nb-md table{ width:100%; border-collapse:collapse; margin:1.1em 0; font-size:13px; }
 .nb-md th, .nb-md td{ border:1px solid var(--border); padding:8px 11px; text-align:left;
