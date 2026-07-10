@@ -1,0 +1,101 @@
+/* src/components/HldTracker.css
+   Reuses the site theme variables from .nb-root and adds the three status
+   tokens the tracker needs. Imported by HldTracker.jsx, which App.jsx loads
+   statically — so these styles (including the .trk-cta card used on the HLD
+   category page) are available app-wide. */
+
+.nb-root { --doing:#f0a63c; --done:#4ade80; --accent-dim:#2b7f95; }
+
+.trk-head{ margin-top:14px; }
+.trk-eyebrow{ font-family:var(--mono); font-size:11px; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--accent); margin:0 0 10px; }
+.trk-title{ font-size:28px; font-weight:680; letter-spacing:-.02em; margin:0 0 6px; }
+.trk-sub{ color:var(--muted); margin:0; font-size:14px; }
+.trk-sub code{ font-family:var(--mono); font-size:.9em; background:var(--surface-3);
+  padding:1px 6px; border-radius:4px; color:var(--text); }
+
+.trk-overall{ margin-top:20px; border:1px solid var(--border); background:var(--surface);
+  border-radius:12px; padding:18px 20px; display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+.trk-ring-wrap{ display:flex; align-items:center; gap:16px; }
+.trk-ring{ width:62px; height:62px; flex:none; }
+.trk-ring-track{ fill:none; stroke:var(--surface-3); stroke-width:7; }
+.trk-ring-fill{ fill:none; stroke:var(--accent); stroke-width:7; stroke-linecap:round;
+  transition:stroke-dashoffset .5s ease; transform:rotate(-90deg); transform-origin:50% 50%; }
+.trk-ring-num{ font-family:var(--mono); font-size:15px; font-weight:600; fill:var(--text); }
+.trk-big{ font-size:15px; font-weight:600; }
+.trk-small{ font-size:12.5px; color:var(--muted); font-family:var(--mono); margin-top:2px; }
+.trk-legend{ margin-left:auto; display:flex; gap:16px; flex-wrap:wrap; }
+.trk-legend span{ font-family:var(--mono); font-size:11px; color:var(--muted);
+  display:inline-flex; align-items:center; gap:6px; }
+.trk-dot{ width:9px; height:9px; border-radius:2px; display:inline-block; }
+.trk-dot.todo{ border:1.5px solid var(--faint); }
+.trk-dot.doing{ background:var(--doing); }
+.trk-dot.done{ background:var(--done); }
+
+.trk-filters{ display:flex; gap:8px; margin-top:16px; flex-wrap:wrap; }
+.trk-btn{ font-family:var(--mono); font-size:12px; letter-spacing:.03em; color:var(--muted);
+  background:var(--surface); border:1px solid var(--border); padding:7px 13px; border-radius:7px;
+  cursor:pointer; transition:all .15s; }
+.trk-btn:hover{ color:var(--text); border-color:var(--accent-dim); }
+.trk-btn.active{ color:var(--accent); border-color:var(--accent-dim); background:var(--surface-2); }
+
+.trk-tier{ margin-top:30px; }
+.trk-tier-head{ display:flex; align-items:baseline; gap:12px; padding-bottom:10px;
+  margin-bottom:4px; border-bottom:1px solid var(--border-soft); }
+.trk-tier-label{ font-family:var(--mono); font-size:12px; letter-spacing:.18em;
+  text-transform:uppercase; font-weight:600; }
+.trk-tier.easy .trk-tier-label{ color:var(--done); }
+.trk-tier.medium .trk-tier-label{ color:var(--doing); }
+.trk-tier.hard .trk-tier-label{ color:#f2708a; }
+.trk-tier-count{ font-family:var(--mono); font-size:12px; color:var(--faint); margin-left:auto; }
+.trk-tier-bar{ height:3px; background:var(--surface-3); border-radius:2px; overflow:hidden;
+  margin-bottom:8px; }
+.trk-tier-bar>i{ display:block; height:100%; border-radius:2px; transition:width .4s ease; }
+.trk-tier.easy .trk-tier-bar>i{ background:var(--done); }
+.trk-tier.medium .trk-tier-bar>i{ background:var(--doing); }
+.trk-tier.hard .trk-tier-bar>i{ background:#f2708a; }
+
+.trk-row{ border:1px solid var(--border-soft); background:var(--surface); border-radius:10px;
+  margin-top:8px; display:flex; align-items:center; gap:14px; padding:12px 14px;
+  transition:border-color .15s; }
+.trk-row:hover{ border-color:var(--border); }
+.trk-row.done{ opacity:.62; }
+.trk-node{ width:26px; height:26px; flex:none; border-radius:6px; cursor:pointer;
+  background:var(--surface-2); border:1.5px solid var(--faint); display:grid; place-items:center;
+  padding:0; transition:all .18s; }
+.trk-node:hover{ border-color:var(--accent); }
+.trk-node svg{ width:14px; height:14px; }
+.trk-glyph{ opacity:0; transition:opacity .15s; fill:none; }
+.trk-row.doing .trk-node{ border-color:var(--doing); background:rgba(240,166,60,.12); }
+.trk-row.doing .trk-glyph.doing{ opacity:1; stroke:var(--doing); }
+.trk-row.done .trk-node{ border-color:var(--done); background:rgba(74,222,128,.15); }
+.trk-row.done .trk-glyph.done{ opacity:1; stroke:var(--done); }
+.trk-num{ font-family:var(--mono); font-size:12px; color:var(--faint); width:30px; flex:none; }
+.trk-name{ font-size:14.5px; font-weight:500; flex:1; letter-spacing:-.005em; }
+.trk-row.done .trk-name{ text-decoration:line-through; text-decoration-color:var(--faint); }
+.trk-tag{ font-family:var(--mono); font-size:10px; letter-spacing:.05em; text-transform:uppercase;
+  padding:3px 7px; border-radius:5px; color:var(--faint); border:1px solid var(--border); }
+.trk-row.doing .trk-tag{ color:var(--doing); border-color:rgba(240,166,60,.4); }
+.trk-row.done .trk-tag{ color:var(--done); border-color:rgba(74,222,128,.35); }
+.trk-note-link{ font-family:var(--mono); font-size:11.5px; text-decoration:none;
+  color:var(--accent); border:1px solid var(--accent-dim); background:rgba(69,196,230,.08);
+  padding:5px 10px; border-radius:6px; display:inline-flex; align-items:center; gap:5px;
+  white-space:nowrap; transition:all .15s; }
+.trk-note-link:hover{ background:rgba(69,196,230,.16); }
+
+/* the tracker card shown on the HLD category page */
+.trk-cta{ display:flex; align-items:center; justify-content:space-between; gap:14px;
+  flex-wrap:wrap; border:1px solid var(--accent-dim); background:rgba(69,196,230,.06);
+  border-radius:11px; padding:14px 16px; margin-bottom:16px; text-decoration:none;
+  color:inherit; transition:background .15s; }
+.trk-cta:hover{ background:rgba(69,196,230,.12); }
+.trk-cta-l{ display:flex; flex-direction:column; gap:3px; }
+.trk-cta-title{ font-weight:600; font-size:14.5px; }
+.trk-cta-sub{ font-family:var(--mono); font-size:11.5px; color:var(--muted); }
+.trk-cta-go{ font-family:var(--mono); font-size:12px; color:var(--accent);
+  display:inline-flex; align-items:center; gap:5px; white-space:nowrap; }
+
+@media (max-width:560px){
+  .trk-legend{ width:100%; margin-left:0; }
+  .trk-tag{ display:none; }
+}

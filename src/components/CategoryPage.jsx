@@ -1,9 +1,9 @@
-// src/components/CategoryPage.jsx
 import { useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Search, FileText } from "lucide-react";
+import { ArrowLeft, Search, FileText, ListChecks } from "lucide-react";
 import Layout from "./Layout";
 import { findCategory, badgeLabel, badgeClass } from "../data/categories";
+import { hldProgress } from "../data/hldTracker";
 
 export default function CategoryPage() {
   const { categoryId } = useParams();
@@ -28,6 +28,8 @@ export default function CategoryPage() {
   }
 
   const Icon = category.icon;
+  const showTracker = category.id === "hld";
+  const p = showTracker ? hldProgress() : null;
 
   return (
     <Layout>
@@ -45,6 +47,21 @@ export default function CategoryPage() {
             <p className="nb-cat-blurb">{category.blurb}</p>
           </div>
         </div>
+
+        {showTracker && (
+          <Link className="trk-cta" to="/hld/tracker">
+            <span className="trk-cta-l">
+              <span className="trk-cta-title">
+                <ListChecks size={15} style={{ verticalAlign: "-2px", marginRight: 6 }} />
+                HLD roadmap tracker
+              </span>
+              <span className="trk-cta-sub">
+                {p.done}/{p.total} designs complete — see what’s done, doing, and next
+              </span>
+            </span>
+            <span className="trk-cta-go">Open tracker →</span>
+          </Link>
+        )}
 
         <div className="nb-search">
           <Search size={15} />
