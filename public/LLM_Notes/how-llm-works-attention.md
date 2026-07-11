@@ -172,13 +172,46 @@ One attention pass captures **one kind** of relationship. But words relate in ma
 Mechanically:
 
 ```
-1. Split into h heads (e.g. 12). Each head gets its own smaller Q/K/V.
+1. Split into h heads (e.g. 12). Each head gets its own W_Q/W_K/W_V.
 2. Run scaled dot-product attention in each head, independently, in parallel.
 3. Concatenate all heads' outputs back into one long vector.
 4. Multiply by an output matrix W_O to mix them into the final result.
 ```
 
-That's the **Multi-Head Attention** in every transformer. Typical counts: 8, 12, 16, 32+ heads. Each head's dimension is usually `d_model / h` (e.g. 768 / 12 = 64), so the total cost stays about the same as one big head — you get diversity *for free*.
+The whole thing is the title formula:
+
+```
+MultiHead(Q, K, V) = Concat(head₁, …, head_h) · W_O
+```
+
+Typical counts: 8, 12, 16, 32+ heads. Each head's dimension is usually `d_model / h` (e.g. 768 / 12 = 64), so the total cost stays about the same as one big head — you get diversity *for free*.
+
+### 6.1 Reading the diagram
+
+![Multi-head attention: one static embedding fans out to h heads, each with its own Q/K/V; each head runs scaled dot-product attention; outputs are concatenated and mixed by W_O into the contextual embedding](LLM_Images/MultiHead_Attention.png)
+
+Walk it left → right:
+
+| Stage in the image | What's happening |
+|---|---|
+| **Static Embedding** (grey box, far left) | one word's context-free vector (word + position). The *same* vector fans out to **all** heads (dashed lines) — heads are **not** fed different slices of the word; each gets the whole thing. |
+| **little neural nets → 🟡🟠🔵 boxes** | inside each head the input is projected into **Query (🟡)**, **Key (🟠)**, **Value (🔵)** using *that head's own* `W_Q/W_K/W_V`. |
+| **🟡 · 🟠 in the bracket** | `Q · Kᵀ / √d_k` → the scores (Steps 1–2 of §3). |
+| **black-&-white checkered circle** | the **attention-weight matrix after softmax** — a bright cell = "this word attends strongly to that word." Each head's grid looks different because each had different Q/K. |
+| **🟢 green box (per head)** | `weights · V` = that head's output vectors — the view from *this* lens. |
+| **Concat(h1,h2,h3,h4)** | staple the 4 green outputs side-by-side into one long vector. |
+| **W_O (dense blue mesh)** | multiply the concatenated vector by `W_O` to *mix* the heads → the **Contextual Embedding** (olive box) that flows to the next layer. |
+
+### 6.2 Where does W_O come from?
+
+`W_O` is a **learned weight matrix — exactly like `W_Q/W_K/W_V`.** It is *not* computed from the data or derived by a rule:
+
+1. **Born random** — filled with small random numbers when the model is created; it knows nothing yet.
+2. **Learned by backprop** — training measures the error (loss) and nudges every number in `W_O` (and every other matrix) to reduce it. After training it is **frozen**.
+3. **Its job** — `Concat` only *stacks* the heads side by side; they never actually combined. `W_O` is the **mixing layer** that blends "head 1 found the grammar link, head 2 found what 'it' refers to, head 3 caught the tone" into one coherent vector.
+4. **Its shape** — `(h·d_head) × d_model`. Since usually `h·d_head = d_model`, `W_O` is square and its main role is *mixing* — it also guarantees the output is the same size as the input, so blocks can stack.
+
+> One-liner: *"W_O is the fifth matrix — three that **look** (W_Q/K/V, per head) and one that **combines** (W_O). All learned, all random at init, all frozen after training."*
 
 ---
 
@@ -208,7 +241,72 @@ Stack this block **N times** (GPT-3: 96 times) and you have the core of an LLM. 
 
 ---
 
-## 9. Quick glossary
+## 9. How the weights are stored & counted — parameters, d_model, layers
+
+This bundles the questions that trip everyone up once multi-head clicks: what's actually kept after training, and how a pile of matrices becomes "175 billion parameters."
+
+### 9.1 What is a "parameter"?
+
+A weight matrix is just a **grid of numbers**. **Each single number is one parameter.**
+
+```
+        ┌            ┐
+   W =  │  0.1   0.4 │
+        │ -0.2   0.9 │      →  6 numbers  →  6 parameters
+        │  0.7  -0.3 │
+        └            ┘        (a 3×2 matrix)
+```
+
+So a matrix is **not** one parameter — it's a *container* of `rows × cols` parameters. "Billions of parameters" = the total count of all these numbers across the whole model. **Parameter count of a matrix = rows × columns.**
+
+### 9.2 What is `d_model`?
+
+`d_model` is the **length of a token's vector** as it flows through the model — the model's "width." Every embedding, every attention output, every layer's input and output is a vector of this size. GPT-3: `d_model = 12,288`. A single head works on a slice of it: `d_head = d_model / h`.
+
+### 9.3 What is a "layer"?
+
+A **layer = one full transformer block** = Multi-Head Attention + Feed-Forward (+ residual & layer-norm). An LLM stacks this identical block **N times**, and every layer has its **own fresh set** of matrices (layer 1's `W_Q` ≠ layer 5's `W_Q`):
+
+```
+input → [Layer 1] → [Layer 2] → … → [Layer N] → output
+```
+
+More layers = more chances to build up increasingly abstract understanding.
+
+### 9.4 Does the model keep separate copies per head / per layer?
+
+- **Per head — logically yes:** each head has its own `W_Q/W_K/W_V`. **Physically** they're usually **packed into one big matrix per layer** and *sliced* into `h` heads at runtime. So on disk it's *one* `W_Q` per layer that gets reshaped, not `h` little separate files. Same math, faster on GPUs.
+- **Per layer — fully separate:** every layer stores its own complete set; nothing is shared between layers.
+- After training, **every matrix is frozen and saved** — that saved checkpoint file *is* the model. Inference just reuses these frozen matrices; nothing is re-learned.
+
+### 9.5 How you actually get to "175 billion" (GPT-3, worked)
+
+```
+d_model = 12,288 ,  N = 96 layers
+
+one attention matrix  W_Q :  12,288 × 12,288           ≈ 151 M parameters
+attention per layer   (W_Q + W_K + W_V + W_O = 4)      ≈ 604 M
+feed-forward per layer (2 matrices, d_model × 4·d_model) ≈ 1,200 M
+──────────────────────────────────────────────────────────────────
+one layer                                              ≈ 1.8 B
+× 96 layers                                            ≈ 173 B
++ embeddings / output                                  ≈ 175 B  ✅
+```
+
+So "175B parameters" is literally *every number in every matrix, added up*. Note: earlier we counted ~27,700 **matrices** for attention — that counts the *boxes*; the 175B counts the *numbers inside* all the boxes. **Different units — that's the usual point of confusion.**
+
+### The whole chain in one view
+
+```
+number                          →  a parameter
+grid of numbers                 →  a matrix   (W_Q ≈ 151M numbers)
+matrices bundled together       →  one LAYER  (~1.8B params)
+layer stacked N times           →  the MODEL  (~175B params)
+```
+
+---
+
+## 10. Quick glossary
 
 | Term | Plain meaning |
 |------|---------------|
@@ -228,13 +326,19 @@ Stack this block **N times** (GPT-3: 96 times) and you have the core of an LLM. 
 | **Multi-head attention** | Run several attention ops in parallel, each a "head", then combine |
 | **Head** | One independent attention operation with its own Q/K/V matrices |
 | **W_O** | Output matrix that mixes concatenated heads into the final vector |
+| **Parameter** | One individual learned number inside a weight matrix |
+| **Matrix** | A grid of numbers; holds `rows × cols` parameters |
+| **d_model** | Length of a token's vector throughout the model (its "width"); GPT-3 = 12,288 |
+| **d_head** | A single head's slice of the vector, = `d_model / h` |
+| **Layer / block** | One full transformer block (attention + feed-forward), stacked N times |
+| **Checkpoint** | The saved file of all frozen weights after training — literally "the model" |
 | **O(n²)** | Compute/memory grows with the square of sequence length |
 | **Residual connection** | Add a layer's input to its output; stabilizes deep training |
 | **Layer normalization** | Rescale a vector to a stable range; stabilizes training |
 
 ---
 
-## 10. FAQ — the exact questions from this session
+## 11. FAQ — the exact questions from this session
 
 **Q: In one line, what does attention do?**
 It lets every word look at every other word, score how relevant each is, and blend in their meaning — so a word's vector becomes specific to *this* sentence.
@@ -257,9 +361,24 @@ Attention compares every token with every token → an `n × n` score matrix →
 **Q: How is GPT's attention different from BERT's?**
 GPT uses **masked/causal** self-attention (each token sees only earlier tokens, so it can generate). BERT uses **unmasked** self-attention (sees the whole sentence, so it's for understanding).
 
+**Q: Where does W_O come from?**
+It's a learned matrix just like W_Q/K/V — random at init, tuned by backprop, frozen after training. Its job is to *mix* the concatenated head outputs into one d_model-sized vector. `Concat` alone just stacks the heads; W_O is what actually blends them.
+
+**Q: After training, does the model keep W_Q/K/V/W_O? Many copies per head?**
+Yes — all weights are frozen and saved; that file *is* the model. Logically each head has its own W_Q/K/V (per layer), but physically they're packed into one big matrix per layer and sliced into heads at runtime. Every layer keeps its own full, separate set — nothing shared between layers.
+
+**Q: What's the difference between a "matrix" and a "parameter"?**
+A parameter is one number. A matrix is a grid holding `rows × cols` parameters. So one W_Q in GPT-3 (12,288 × 12,288) is a *single matrix* but holds ~151 million *parameters*. Counting matrices ≠ counting parameters.
+
+**Q: What is d_model, and what is a layer?**
+`d_model` = the length of a token's vector everywhere in the model (GPT-3 = 12,288). A *layer* = one full transformer block (attention + feed-forward), and the model stacks N of them (GPT-3 = 96), each with its own weights.
+
+**Q: How do you actually get to "175 billion parameters"?**
+Add up every number in every matrix. Per layer ≈ 1.8B (≈0.6B attention + ≈1.2B feed-forward); × 96 layers ≈ 173B; + embeddings ≈ 175B. It's just a giant sum of all the learned numbers.
+
 ---
 
-## 11. What's next (the following rungs)
+## 12. What's next (the following rungs)
 
 - **The full transformer block** — attention + feed-forward + residual + layer-norm, stacked N times. This assembles everything so far (tokens → embeddings → position → attention → block → deep stack) into an actual model.
 - Then **output & sampling** — how the final vectors become a probability over the vocabulary and how the next token is picked (temperature, top-k, top-p). *(Already partly covered in the Part 2 — Sampling notes.)*

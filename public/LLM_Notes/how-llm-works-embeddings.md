@@ -135,6 +135,33 @@ The embedding matrix is just the **front door**. After tokens become vectors, th
 
 > Clean phrasing: *"The embedding layer is a single `vocab × dimension` matrix acting as a lookup table. The rest of the transformer is a deep stack of additional weight matrices that transform those embeddings."*
 
+### 5.1 Dimension ≠ vocabulary — how so few numbers cover unlimited words
+
+A natural worry: *"GPT-3's dimension is only 12,288 — how can that possibly cover every word?"* This mixes up **two totally separate numbers**:
+
+| Number | Question it answers | GPT-3 |
+|---|---|---|
+| **Vocabulary size** | *How many* distinct tokens exist (= matrix **rows**) | ~50,257 |
+| **Embedding dimension (`d_model`)** | *How long* each token's vector is (= matrix **columns**) | 12,288 |
+
+The dimension is **not "one slot per word."** Every token already gets its **own** full 12,288-long vector — nothing is squeezed. The worry comes from imagining **one-hot encoding**, where one dimension *would* equal one word:
+
+```
+one-hot "cat" = [0, 0, 1, 0, ... , 0]   ← would need 50,257 slots, one "1"
+```
+
+Embeddings throw that away. Each word is instead a **point in a 12,288-dimensional continuous space**, and continuous space holds an effectively **infinite** number of distinct points. A few continuous numbers carry enormous capacity:
+
+- **GPS:** just 2 numbers (lat, long) locate *any* point on Earth.
+- **RGB:** just 3 numbers = 16.7 million colours.
+- **12,288 dims:** even if each were merely on/off, that's `2^12,288` combinations — a ~3,700-digit number, vastly more than any vocabulary. And the numbers are *real-valued*, so it's far bigger still.
+
+So 12,288 isn't "barely enough" — it's wildly more than enough. Most of that capacity isn't spent *identifying* words at all; it encodes the **relationships** between them (`king − man + woman ≈ queen`).
+
+> And remember tokens aren't even whole words — ~50k **subword** pieces compose *any* word ("unbelievable" → `un` + `believ` + `able`), so a small vocabulary already covers unlimited language.
+
+**One-liner:** *"Embedding dimension is the coordinate-count of a continuous meaning-space, not a per-word slot — like 2 GPS numbers pinpointing anywhere on Earth. Vocabulary size (how many words) and dimension (how long each vector is) are unrelated."*
+
 ---
 
 ## 6. Two flavours: static vs contextual embeddings
@@ -384,6 +411,9 @@ The **embedding layer is one matrix** of shape `vocab_size × dimension`, used a
 
 **Q: What exactly is "vocab"?**
 The vocabulary — the fixed, numbered list of every token the model knows (built once by the tokenizer, then frozen). Vocab size = number of entries = number of **rows** in the embedding matrix, because every token maps to exactly one vector. Modern models use subword vocabularies (~50–100k) so any word can be built from pieces.
+
+**Q: If GPT-3's dimension is only 12,288, how does that cover all words?**
+It's not one dimension per word — that's one-hot encoding. Dimension (vector *length*, = columns) and vocabulary (how many tokens, = rows) are separate numbers. Each token gets its own full 12,288-number vector, and a 12,288-dimensional *continuous* space holds effectively infinite distinct points (like 2 GPS numbers locating anywhere on Earth). So the dimension is wildly more than enough — most of it encodes relationships between words, not just their identity.
 
 **Q: What are the embedding types — Word2Vec, BERT, "semantic"?**
 They're different kinds of label. Word2Vec/GloVe/FastText are older **static** algorithms (one fixed vector per word). BERT/GPT are modern **contextual** models (vector depends on the sentence). "Semantic"/"sentence" embeddings describe the **purpose** — one vector per whole passage for meaning-based search — produced by models like SBERT and OpenAI `text-embedding-3`. Evolution: static → contextual → sentence-level.
