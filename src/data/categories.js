@@ -3,7 +3,7 @@
 // new folder like  public/DEVOPS_Notes/  and add a META entry keyed by its
 // lowercase id ("devops"). Files inside are picked up automatically.
 
-import { Cloud, Cpu, Network, Blocks, Folder } from "lucide-react";
+import { Cloud, Cpu, Network, Blocks, Database, Folder } from "lucide-react";
 import generated from "../notes-manifest.json";
 
 const META = {
@@ -36,6 +36,11 @@ const META = {
     icon: Network,
     accent: "#38bdf8",
     blurb: "OSI, TCP/IP, protocols & the wire",
+  },
+  dbms: {
+    icon: Database,
+    accent: "#f472b6",
+    blurb: "Schemas, ER, SQL, transactions, indexing & scaling",
   },
 };
 

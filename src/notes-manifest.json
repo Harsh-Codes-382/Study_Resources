@@ -308,6 +308,139 @@
     ]
   },
   {
+    "id": "dbms",
+    "name": "DBMS",
+    "folder": "DBMS_Notes",
+    "notes": [
+      {
+        "id": "01-introduction-to-dbms",
+        "title": "Introduction to DBMS",
+        "type": "md",
+        "file": "01_Introduction_to_DBMS.md",
+        "path": "/DBMS_Notes/01_Introduction_to_DBMS.md"
+      },
+      {
+        "id": "02-dbms-architecture",
+        "title": "DBMS Architecture",
+        "type": "md",
+        "file": "02_DBMS_Architecture.md",
+        "path": "/DBMS_Notes/02_DBMS_Architecture.md"
+      },
+      {
+        "id": "03-entity-relationship-model",
+        "title": "Entity Relationship Model",
+        "type": "md",
+        "file": "03_Entity_Relationship_Model.md",
+        "path": "/DBMS_Notes/03_Entity_Relationship_Model.md"
+      },
+      {
+        "id": "04-extended-er-features",
+        "title": "Extended ER Features",
+        "type": "md",
+        "file": "04_Extended_ER_Features.md",
+        "path": "/DBMS_Notes/04_Extended_ER_Features.md"
+      },
+      {
+        "id": "05-relational-model",
+        "title": "Relational Model",
+        "type": "md",
+        "file": "05_Relational_Model.md",
+        "path": "/DBMS_Notes/05_Relational_Model.md"
+      },
+      {
+        "id": "06-er-to-relational-model",
+        "title": "ER to Relational Model",
+        "type": "md",
+        "file": "06_ER_to_Relational_Model.md",
+        "path": "/DBMS_Notes/06_ER_to_Relational_Model.md"
+      },
+      {
+        "id": "07-sql",
+        "title": "SQL",
+        "type": "md",
+        "file": "07_SQL.md",
+        "path": "/DBMS_Notes/07_SQL.md"
+      },
+      {
+        "id": "08-normalisation",
+        "title": "Normalisation",
+        "type": "md",
+        "file": "08_Normalisation.md",
+        "path": "/DBMS_Notes/08_Normalisation.md"
+      },
+      {
+        "id": "09-transaction",
+        "title": "Transaction",
+        "type": "md",
+        "file": "09_Transaction.md",
+        "path": "/DBMS_Notes/09_Transaction.md"
+      },
+      {
+        "id": "10-atomicity-and-durability",
+        "title": "Atomicity and Durability",
+        "type": "md",
+        "file": "10_Atomicity_and_Durability.md",
+        "path": "/DBMS_Notes/10_Atomicity_and_Durability.md"
+      },
+      {
+        "id": "11-indexing",
+        "title": "Indexing",
+        "type": "md",
+        "file": "11_Indexing.md",
+        "path": "/DBMS_Notes/11_Indexing.md"
+      },
+      {
+        "id": "12-nosql",
+        "title": "NoSQL",
+        "type": "md",
+        "file": "12_NoSQL.md",
+        "path": "/DBMS_Notes/12_NoSQL.md"
+      },
+      {
+        "id": "13-types-of-databases",
+        "title": "Types of Databases",
+        "type": "md",
+        "file": "13_Types_of_Databases.md",
+        "path": "/DBMS_Notes/13_Types_of_Databases.md"
+      },
+      {
+        "id": "14-clustering",
+        "title": "Clustering",
+        "type": "md",
+        "file": "14_Clustering.md",
+        "path": "/DBMS_Notes/14_Clustering.md"
+      },
+      {
+        "id": "15-partitioning-and-sharding",
+        "title": "Partitioning and Sharding",
+        "type": "md",
+        "file": "15_Partitioning_and_Sharding.md",
+        "path": "/DBMS_Notes/15_Partitioning_and_Sharding.md"
+      },
+      {
+        "id": "16-database-scaling-patterns",
+        "title": "Database Scaling Patterns",
+        "type": "md",
+        "file": "16_Database_Scaling_Patterns.md",
+        "path": "/DBMS_Notes/16_Database_Scaling_Patterns.md"
+      },
+      {
+        "id": "17-cap-theorem",
+        "title": "CAP Theorem",
+        "type": "md",
+        "file": "17_CAP_Theorem.md",
+        "path": "/DBMS_Notes/17_CAP_Theorem.md"
+      },
+      {
+        "id": "18-master-slave-database-concept",
+        "title": "Master Slave Database Concept",
+        "type": "md",
+        "file": "18_Master_Slave_Database_Concept.md",
+        "path": "/DBMS_Notes/18_Master_Slave_Database_Concept.md"
+      }
+    ]
+  },
+  {
     "id": "os",
     "name": "OS",
     "folder": "OS_Notes",
