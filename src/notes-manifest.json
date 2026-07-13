@@ -180,6 +180,13 @@
     "folder": "LLM_Notes",
     "notes": [
       {
+        "id": "0-transformer-architecture-end-to-end",
+        "title": "transformer architecture end to end",
+        "type": "md",
+        "file": "0-transformer-architecture-end-to-end.md",
+        "path": "/LLM_Notes/0-transformer-architecture-end-to-end.md"
+      },
+      {
         "id": "00-ai-engineer-roadmap",
         "title": "AI Engineer Roadmap",
         "type": "pdf",
@@ -194,32 +201,32 @@
         "path": "/LLM_Notes/01-how-llm-works-tokens.md"
       },
       {
-        "id": "1-5-how-llm-works-sampling",
+        "id": "02-how-llm-works-sampling",
         "title": "how llm works sampling",
         "type": "md",
-        "file": "1.5-how-llm-works-sampling.md",
-        "path": "/LLM_Notes/1.5-how-llm-works-sampling.md"
+        "file": "02-how-llm-works-sampling.md",
+        "path": "/LLM_Notes/02-how-llm-works-sampling.md"
       },
       {
-        "id": "02-how-llm-works-embeddings",
+        "id": "03-how-llm-works-embeddings",
         "title": "how llm works embeddings",
         "type": "md",
-        "file": "02-how-llm-works-embeddings.md",
-        "path": "/LLM_Notes/02-how-llm-works-embeddings.md"
+        "file": "03-how-llm-works-embeddings.md",
+        "path": "/LLM_Notes/03-how-llm-works-embeddings.md"
       },
       {
-        "id": "03-how-llm-works-attention",
+        "id": "04-how-llm-works-attention",
         "title": "how llm works attention",
         "type": "md",
-        "file": "03-how-llm-works-attention.md",
-        "path": "/LLM_Notes/03-how-llm-works-attention.md"
+        "file": "04-how-llm-works-attention.md",
+        "path": "/LLM_Notes/04-how-llm-works-attention.md"
       },
       {
-        "id": "04-how-llm-works-ffn-blocks",
+        "id": "05-how-llm-works-ffn-blocks",
         "title": "how llm works ffn blocks",
         "type": "md",
-        "file": "04-how-llm-works-ffn-blocks.md",
-        "path": "/LLM_Notes/04-how-llm-works-ffn-blocks.md"
+        "file": "05-how-llm-works-ffn-blocks.md",
+        "path": "/LLM_Notes/05-how-llm-works-ffn-blocks.md"
       }
     ]
   },
