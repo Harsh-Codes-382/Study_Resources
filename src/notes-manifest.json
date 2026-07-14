@@ -227,6 +227,13 @@
         "type": "md",
         "file": "05-how-llm-works-ffn-blocks.md",
         "path": "/LLM_Notes/05-how-llm-works-ffn-blocks.md"
+      },
+      {
+        "id": "06-customizing-llms-ladder",
+        "title": "customizing llms ladder",
+        "type": "md",
+        "file": "06-customizing-llms-ladder.md",
+        "path": "/LLM_Notes/06-customizing-llms-ladder.md"
       }
     ]
   },
