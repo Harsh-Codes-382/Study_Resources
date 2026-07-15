@@ -188,7 +188,7 @@ Typical counts: 8, 12, 16, 32+ heads. Each head's dimension is usually `d_model 
 
 ### 6.1 Reading the diagram
 
-![Multi-head attention: one static embedding fans out to h heads, each with its own Q/K/V; each head runs scaled dot-product attention; outputs are concatenated and mixed by W_O into the contextual embedding](LLM_Images/MultiHead_Attention.png)
+![Multi-head attention: one static embedding fans out to h heads, each with its own Q/K/V; each head runs scaled dot-product attention; outputs are concatenated and mixed by W_O into the contextual embedding](../LLM_Images/MultiHead_Attention.png)
 
 Walk it left → right:
 

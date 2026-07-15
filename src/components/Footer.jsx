@@ -1,10 +1,10 @@
 // src/components/Footer.jsx
 import { Link } from "react-router-dom";
 import { GitBranch, ArrowUp } from "lucide-react";
-import { CATEGORIES } from "../data/categories";
+import { CATEGORIES, countNotes } from "../data/categories";
 
 export default function Footer() {
-  const total = CATEGORIES.reduce((a, c) => a + c.notes.length, 0);
+  const total = CATEGORIES.reduce((a, c) => a + countNotes(c), 0);
   const year = new Date().getFullYear();
   const toTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -21,7 +21,7 @@ export default function Footer() {
 
         <nav className="nb-foot-links" aria-label="Shelves">
           {CATEGORIES.map((c) => (
-            <Link key={c.id} to={`/${c.id}`} style={{ "--ac": c.accent }}>
+            <Link key={c.id} to={c.url} style={{ "--ac": c.accent }}>
               {c.name}
             </Link>
           ))}

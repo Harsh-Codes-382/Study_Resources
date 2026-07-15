@@ -58,9 +58,8 @@ export default function HldTracker() {
           <p className="trk-eyebrow">System Design · HLD Roadmap</p>
           <h1 className="trk-title">HLD Study Tracker</h1>
           <p className="trk-sub">
-            {all} designs across three tiers. Status is defined in code — edit{" "}
-            <code>src/data/hldTracker.js</code> to change it permanently. Tap a
-            node to cycle it for this session.
+            {all} designs across three tiers. Tap any node to mark it as to do,
+            doing, or done.
           </p>
 
           <div className="trk-overall">

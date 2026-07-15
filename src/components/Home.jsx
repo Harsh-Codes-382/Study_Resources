@@ -3,17 +3,21 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronRight, Search } from "lucide-react";
 import Layout from "./Layout";
-import { CATEGORIES } from "../data/categories";
+import { CATEGORIES, countNotes } from "../data/categories";
+
+// Every note title anywhere in a shelf's subtree, for search.
+const allTitles = (c) =>
+  c.notes.map((n) => n.title).concat(c.categories.flatMap(allTitles));
 
 export default function Home() {
-  const total = CATEGORIES.reduce((a, c) => a + c.notes.length, 0);
+  const total = CATEGORIES.reduce((a, c) => a + countNotes(c), 0);
   const [query, setQuery] = useState("");
 
   const shelves = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return CATEGORIES;
     return CATEGORIES.filter((c) =>
-      [c.name, c.blurb, ...c.notes.map((n) => n.title)]
+      [c.name, c.blurb, ...allTitles(c)]
         .join(" ")
         .toLowerCase()
         .includes(q)
@@ -54,10 +58,11 @@ export default function Home() {
         <div className="nb-grid">
           {shelves.map((c) => {
             const Icon = c.icon;
+            const count = countNotes(c);
             return (
               <Link
                 key={c.id}
-                to={`/${c.id}`}
+                to={c.url}
                 className="nb-card"
                 style={{ "--ac": c.accent }}
               >
@@ -68,7 +73,7 @@ export default function Home() {
                 <span className="nb-card-name">{c.name}</span>
                 <span className="nb-card-blurb">{c.blurb}</span>
                 <span className="nb-card-foot">
-                  {c.notes.length} note{c.notes.length !== 1 ? "s" : ""}
+                  {count} note{count !== 1 ? "s" : ""}
                   <ChevronRight size={15} />
                 </span>
               </Link>

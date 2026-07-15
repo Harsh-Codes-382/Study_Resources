@@ -1,22 +1,12 @@
 // src/components/NotePage.jsx
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import Layout from "./Layout";
-import {
-  findCategory,
-  findNote,
-  badgeLabel,
-  badgeClass,
-  isPdf,
-} from "../data/categories";
+import { badgeLabel, badgeClass, isPdf } from "../data/categories";
 import { mdToHtml } from "../lib/markdown";
 
-export default function NotePage() {
-  const { categoryId, noteId } = useParams();
-  const category = findCategory(categoryId);
-  const note = findNote(categoryId, noteId);
-
+export default function NotePage({ category, note }) {
   const [status, setStatus] = useState("idle"); // idle | loading | error
   const [html, setHtml] = useState("");
 
@@ -74,7 +64,7 @@ export default function NotePage() {
     <Layout>
       <div className="nb-reader" style={{ "--ac": category.accent }}>
         <div className="nb-reader-bar">
-          <Link className="nb-back" to={`/${category.id}`}>
+          <Link className="nb-back" to={category.url}>
             <ArrowLeft size={15} /> {category.name}
           </Link>
           <span className={`nb-badge ${badgeClass(note.type)}`}>
@@ -100,8 +90,7 @@ export default function NotePage() {
           <p className="nb-note-msg">Loading…</p>
         ) : status === "error" ? (
           <p className="nb-note-msg">
-            Couldn’t load this note. Check that the file exists at{" "}
-            <code>public{note.path}</code>.
+            Couldn’t load this note. Please try again later.
           </p>
         ) : (
           <article

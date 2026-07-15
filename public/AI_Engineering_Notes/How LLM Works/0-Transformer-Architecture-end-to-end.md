@@ -4,7 +4,7 @@
 > Deep mechanics (FFN math, attention internals) live in your other notes — here the detail is on **what happens when, and in what order**.
 > Each step shows a focused flow diagram + a **master-map number** so you always know where you are.
 
-![Transformer architecture (encoder-decoder)](./LLM_Images/transformer_Architecture.png)
+![Transformer architecture (encoder-decoder)](../LLM_Images/transformer_Architecture.png)
 
 ---
 

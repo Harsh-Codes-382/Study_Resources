@@ -1,27 +1,32 @@
 import { useState, useMemo } from "react";
-import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Search, FileText, ListChecks } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowLeft, Search, FileText, Folder, ChevronRight, ListChecks } from "lucide-react";
 import Layout from "./Layout";
-import { findCategory, badgeLabel, badgeClass } from "../data/categories";
+import { badgeLabel, badgeClass, countNotes } from "../data/categories";
 import { hldProgress } from "../data/hldTracker";
 
-export default function CategoryPage() {
-  const { categoryId } = useParams();
-  const category = findCategory(categoryId);
+export default function CategoryPage({ category }) {
   const [query, setQuery] = useState("");
 
-  const filtered = useMemo(() => {
+  const q = query.trim().toLowerCase();
+
+  const subcategories = useMemo(() => {
     if (!category) return [];
-    const q = query.trim().toLowerCase();
+    if (!q) return category.categories;
+    return category.categories.filter((c) => c.name.toLowerCase().includes(q));
+  }, [category, q]);
+
+  const notes = useMemo(() => {
+    if (!category) return [];
     if (!q) return category.notes;
     return category.notes.filter((n) => n.title.toLowerCase().includes(q));
-  }, [category, query]);
+  }, [category, q]);
 
   if (!category) {
     return (
       <Layout>
         <p className="nb-note-msg">
-          No shelf called “{categoryId}”. <Link to="/">Back home</Link>.
+          No shelf here. <Link to="/">Back home</Link>.
         </p>
       </Layout>
     );
@@ -30,12 +35,13 @@ export default function CategoryPage() {
   const Icon = category.icon;
   const showTracker = category.id === "hld";
   const p = showTracker ? hldProgress() : null;
+  const isRoot = category.idTrail.length === 1;
 
   return (
     <Layout>
       <div className="nb-cat" style={{ "--ac": category.accent }}>
-        <Link className="nb-back" to="/">
-          <ArrowLeft size={15} /> All shelves
+        <Link className="nb-back" to={category.parentUrl}>
+          <ArrowLeft size={15} /> {isRoot ? "All shelves" : "Back"}
         </Link>
 
         <div className="nb-cat-head">
@@ -73,9 +79,27 @@ export default function CategoryPage() {
         </div>
 
         <ul className="nb-list">
-          {filtered.map((n, idx) => (
-            <li key={n.id}>
-              <Link className="nb-item" to={`/${category.id}/${n.id}`}>
+          {subcategories.map((sub) => {
+            const count = countNotes(sub);
+            return (
+              <li key={`cat-${sub.id}`}>
+                <Link className="nb-item nb-item-folder" to={sub.url}>
+                  <span className="nb-item-idx">
+                    <Folder size={15} />
+                  </span>
+                  <span className="nb-item-title">{sub.name}</span>
+                  <span className="nb-item-count">
+                    {count} note{count !== 1 ? "s" : ""}
+                  </span>
+                  <ChevronRight size={16} className="nb-item-chev" />
+                </Link>
+              </li>
+            );
+          })}
+
+          {notes.map((n, idx) => (
+            <li key={`note-${n.id}`}>
+              <Link className="nb-item" to={`${category.url}/${encodeURIComponent(n.id)}`}>
                 <span className="nb-item-idx">
                   {String(idx + 1).padStart(2, "0")}
                 </span>
@@ -87,7 +111,8 @@ export default function CategoryPage() {
               </Link>
             </li>
           ))}
-          {filtered.length === 0 && (
+
+          {subcategories.length === 0 && notes.length === 0 && (
             <li className="nb-empty">
               No notes match “{query}”. Try another term.
             </li>

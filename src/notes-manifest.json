@@ -3,6 +3,7 @@
     "id": "aws",
     "name": "AWS",
     "folder": "AWS_Notes",
+    "path": "/AWS_Notes",
     "notes": [
       {
         "id": "01-aws-global-infrastructure",
@@ -172,68 +173,97 @@
         "file": "24_Exam_Initialisms_and_Acronyms.md",
         "path": "/AWS_Notes/24_Exam_Initialisms_and_Acronyms.md"
       }
-    ]
+    ],
+    "categories": []
   },
   {
-    "id": "llm",
-    "name": "LLM",
-    "folder": "LLM_Notes",
+    "id": "ai-engineering",
+    "name": "AI Engineering",
+    "folder": "AI_Engineering_Notes",
+    "path": "/AI_Engineering_Notes",
     "notes": [
-      {
-        "id": "0-transformer-architecture-end-to-end",
-        "title": "transformer architecture end to end",
-        "type": "md",
-        "file": "0-transformer-architecture-end-to-end.md",
-        "path": "/LLM_Notes/0-transformer-architecture-end-to-end.md"
-      },
       {
         "id": "00-ai-engineer-roadmap",
         "title": "AI Engineer Roadmap",
         "type": "pdf",
         "file": "00-AI_Engineer_Roadmap.pdf",
-        "path": "/LLM_Notes/00-AI_Engineer_Roadmap.pdf"
+        "path": "/AI_Engineering_Notes/00-AI_Engineer_Roadmap.pdf"
+      }
+    ],
+    "categories": [
+      {
+        "id": "how-llm-works",
+        "name": "How LLM Works",
+        "folder": "How LLM Works",
+        "path": "/AI_Engineering_Notes/How%20LLM%20Works",
+        "notes": [
+          {
+            "id": "0-transformer-architecture-end-to-end",
+            "title": "Transformer Architecture end to end",
+            "type": "md",
+            "file": "0-Transformer-Architecture-end-to-end.md",
+            "path": "/AI_Engineering_Notes/How%20LLM%20Works/0-Transformer-Architecture-end-to-end.md"
+          },
+          {
+            "id": "01-how-llm-works-tokens",
+            "title": "How llm works tokens",
+            "type": "md",
+            "file": "01-How-llm-works-tokens.md",
+            "path": "/AI_Engineering_Notes/How%20LLM%20Works/01-How-llm-works-tokens.md"
+          },
+          {
+            "id": "02-how-llm-works-sampling",
+            "title": "How llm works sampling",
+            "type": "md",
+            "file": "02-How-llm-works-sampling.md",
+            "path": "/AI_Engineering_Notes/How%20LLM%20Works/02-How-llm-works-sampling.md"
+          },
+          {
+            "id": "03-how-llm-works-embeddings",
+            "title": "How llm works embeddings",
+            "type": "md",
+            "file": "03-How-llm-works-embeddings.md",
+            "path": "/AI_Engineering_Notes/How%20LLM%20Works/03-How-llm-works-embeddings.md"
+          },
+          {
+            "id": "04-how-llm-works-attention",
+            "title": "How llm works attention",
+            "type": "md",
+            "file": "04-How-llm-works-attention.md",
+            "path": "/AI_Engineering_Notes/How%20LLM%20Works/04-How-llm-works-attention.md"
+          },
+          {
+            "id": "05-how-llm-works-ffn-blocks",
+            "title": "How llm works ffn blocks",
+            "type": "md",
+            "file": "05-How-llm-works-ffn-blocks.md",
+            "path": "/AI_Engineering_Notes/How%20LLM%20Works/05-How-llm-works-ffn-blocks.md"
+          },
+          {
+            "id": "06-customizing-llms-ladder",
+            "title": "Customizing llms ladder",
+            "type": "md",
+            "file": "06-Customizing-llms-ladder.md",
+            "path": "/AI_Engineering_Notes/How%20LLM%20Works/06-Customizing-llms-ladder.md"
+          }
+        ],
+        "categories": []
       },
       {
-        "id": "01-how-llm-works-tokens",
-        "title": "how llm works tokens",
-        "type": "md",
-        "file": "01-how-llm-works-tokens.md",
-        "path": "/LLM_Notes/01-how-llm-works-tokens.md"
-      },
-      {
-        "id": "02-how-llm-works-sampling",
-        "title": "how llm works sampling",
-        "type": "md",
-        "file": "02-how-llm-works-sampling.md",
-        "path": "/LLM_Notes/02-how-llm-works-sampling.md"
-      },
-      {
-        "id": "03-how-llm-works-embeddings",
-        "title": "how llm works embeddings",
-        "type": "md",
-        "file": "03-how-llm-works-embeddings.md",
-        "path": "/LLM_Notes/03-how-llm-works-embeddings.md"
-      },
-      {
-        "id": "04-how-llm-works-attention",
-        "title": "how llm works attention",
-        "type": "md",
-        "file": "04-how-llm-works-attention.md",
-        "path": "/LLM_Notes/04-how-llm-works-attention.md"
-      },
-      {
-        "id": "05-how-llm-works-ffn-blocks",
-        "title": "how llm works ffn blocks",
-        "type": "md",
-        "file": "05-how-llm-works-ffn-blocks.md",
-        "path": "/LLM_Notes/05-how-llm-works-ffn-blocks.md"
-      },
-      {
-        "id": "06-customizing-llms-ladder",
-        "title": "customizing llms ladder",
-        "type": "md",
-        "file": "06-customizing-llms-ladder.md",
-        "path": "/LLM_Notes/06-customizing-llms-ladder.md"
+        "id": "llm-api-and-prompt-engineering",
+        "name": "LLM API and Prompt Engineering",
+        "folder": "LLM API and Prompt Engineering",
+        "path": "/AI_Engineering_Notes/LLM%20API%20and%20Prompt%20Engineering",
+        "notes": [
+          {
+            "id": "01-calling-an-llm-api",
+            "title": "Calling an LLM API",
+            "type": "md",
+            "file": "01-Calling-an-LLM-API.md",
+            "path": "/AI_Engineering_Notes/LLM%20API%20and%20Prompt%20Engineering/01-Calling-an-LLM-API.md"
+          }
+        ],
+        "categories": []
       }
     ]
   },
@@ -241,6 +271,7 @@
     "id": "hld",
     "name": "HLD",
     "folder": "HLD_Notes",
+    "path": "/HLD_Notes",
     "notes": [
       {
         "id": "url-shortener-tinyurl",
@@ -249,12 +280,14 @@
         "file": "url-shortener-tinyurl.md",
         "path": "/HLD_Notes/url-shortener-tinyurl.md"
       }
-    ]
+    ],
+    "categories": []
   },
   {
     "id": "cn",
     "name": "CN",
     "folder": "CN_Notes",
+    "path": "/CN_Notes",
     "notes": [
       {
         "id": "01-networks-and-topologies",
@@ -326,12 +359,14 @@
         "file": "10_What_Happens_When_You_Type_URL_and_Reference_Nuggets.md",
         "path": "/CN_Notes/10_What_Happens_When_You_Type_URL_and_Reference_Nuggets.md"
       }
-    ]
+    ],
+    "categories": []
   },
   {
     "id": "dbms",
     "name": "DBMS",
     "folder": "DBMS_Notes",
+    "path": "/DBMS_Notes",
     "notes": [
       {
         "id": "01-introduction-to-dbms",
@@ -459,12 +494,14 @@
         "file": "18_Master_Slave_Database_Concept.md",
         "path": "/DBMS_Notes/18_Master_Slave_Database_Concept.md"
       }
-    ]
+    ],
+    "categories": []
   },
   {
     "id": "os",
     "name": "OS",
     "folder": "OS_Notes",
+    "path": "/OS_Notes",
     "notes": [
       {
         "id": "01-introduction-to-os",
@@ -655,6 +692,7 @@
         "file": "27_Thrashing.md",
         "path": "/OS_Notes/27_Thrashing.md"
       }
-    ]
+    ],
+    "categories": []
   }
 ]

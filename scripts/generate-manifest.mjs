@@ -6,7 +6,7 @@
 // re-run. Titles/ids are derived from the filename.
 
 import { readdirSync, statSync, writeFileSync } from "node:fs";
-import { join, extname, basename, dirname } from "node:path";
+import { join, extname, basename, dirname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -14,7 +14,7 @@ const PUBLIC_DIR = join(__dirname, "..", "public");
 const OUT_FILE = join(__dirname, "..", "src", "notes-manifest.json");
 
 const NOTE_EXT = new Set([".md", ".pdf"]);
-const ORDER = ["aws", "llm", "hld", "lld"]; // preferred card order; others follow
+const ORDER = ["aws", "ai-engineering", "hld", "lld"]; // preferred card order; others follow
 
 // "01_AWS_Global_Infrastructure.md" -> "AWS Global Infrastructure"
 const titleFromFile = (file) =>
@@ -30,49 +30,131 @@ const idFromFile = (file) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-const categories = [];
+// "LLM_Notes" -> "LLM", "LLM_API_and_Prompt_Engineering" -> "LLM API and Prompt Engineering"
+const nameFromFolder = (folder) =>
+  folder
+    .replace(/_Notes$/i, "")
+    .replace(/[_]+/g, " ")
+    .trim();
+const idFromFolder = (folder) =>
+  nameFromFolder(folder)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 
-for (const entry of readdirSync(PUBLIC_DIR)) {
-  if (!/_Notes$/i.test(entry)) continue; // only folders like AWS_Notes
-  const dir = join(PUBLIC_DIR, entry);
-  if (!statSync(dir).isDirectory()) continue;
+// Every segment is URL-encoded so folders/files with spaces or "&" (e.g.
+// "How LLM Works", "LLM API & Prompt Engineering") still fetch correctly.
+const encodePath = (relPath) =>
+  "/" + relPath.split("/").map(encodeURIComponent).join("/");
 
-  const name = entry.replace(/_Notes$/i, ""); // "AWS"
-  const id = name.toLowerCase(); // "aws"
+const toManifestPath = (absoluteFilePath) =>
+  encodePath(relative(PUBLIC_DIR, absoluteFilePath).replace(/\\/g, "/"));
 
-  const files = readdirSync(dir)
-    .filter((f) => {
+const toCategoryPath = (absoluteDirPath) => {
+  const relPath = relative(PUBLIC_DIR, absoluteDirPath).replace(/\\/g, "/");
+  return relPath ? encodePath(relPath) : "/";
+};
+
+const listNoteFiles = (dirPath) =>
+  readdirSync(dirPath)
+    .filter((entry) => {
       try {
-        return (
-          statSync(join(dir, f)).isFile() &&
-          NOTE_EXT.has(extname(f).toLowerCase())
-        );
+        const fullPath = join(dirPath, entry);
+        return statSync(fullPath).isFile() && NOTE_EXT.has(extname(entry).toLowerCase());
       } catch {
         return false;
       }
     })
-    .sort(); // zero-padded prefixes sort naturally (01..24)
+    .sort();
 
-  const notes = files.map((file) => ({
+const hasNotesOrSubcategories = (dirPath) => {
+  try {
+    const entries = readdirSync(dirPath);
+    return entries.some((entry) => {
+      const fullPath = join(dirPath, entry);
+      try {
+        if (statSync(fullPath).isDirectory()) {
+          return hasNotesOrSubcategories(fullPath);
+        }
+        return statSync(fullPath).isFile() && NOTE_EXT.has(extname(entry).toLowerCase());
+      } catch {
+        return false;
+      }
+    });
+  } catch {
+    return false;
+  }
+};
+
+const buildCategory = (dirPath) => {
+  const folder = basename(dirPath);
+  const name = nameFromFolder(folder);
+  const id = idFromFolder(folder);
+
+  const notes = listNoteFiles(dirPath).map((file) => ({
     id: idFromFile(file),
     title: titleFromFile(file),
-    type: extname(file).slice(1).toLowerCase(), // "md" | "pdf"
+    type: extname(file).slice(1).toLowerCase(),
     file,
-    path: `/${entry}/${encodeURIComponent(file)}`,
+    path: toManifestPath(join(dirPath, file)),
   }));
 
-  categories.push({ id, name, folder: entry, notes });
+  const childDirs = readdirSync(dirPath)
+    .filter((entry) => {
+      const fullPath = join(dirPath, entry);
+      try {
+        return statSync(fullPath).isDirectory() && hasNotesOrSubcategories(fullPath);
+      } catch {
+        return false;
+      }
+    })
+    .sort();
+
+  const categories = childDirs.map((entry) => buildCategory(join(dirPath, entry)));
+
+  return {
+    id,
+    name,
+    folder,
+    path: toCategoryPath(dirPath),
+    notes,
+    categories,
+  };
+};
+
+const sortCategory = (category) => {
+  category.notes.sort((a, b) => a.file.localeCompare(b.file));
+
+  category.categories.sort((a, b) => {
+    const ia = ORDER.indexOf(a.id);
+    const ib = ORDER.indexOf(b.id);
+    return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib) || a.name.localeCompare(b.name);
+  });
+
+  category.categories.forEach(sortCategory);
+  return category;
+};
+
+const countNotes = (category) =>
+  category.notes.length + category.categories.reduce((total, child) => total + countNotes(child), 0);
+
+const categories = [];
+
+for (const entry of readdirSync(PUBLIC_DIR)) {
+  const fullPath = join(PUBLIC_DIR, entry);
+  if (!/_Notes$/i.test(entry) || !statSync(fullPath).isDirectory()) continue;
+
+  const category = buildCategory(fullPath);
+  categories.push(sortCategory(category));
 }
 
 categories.sort((a, b) => {
   const ia = ORDER.indexOf(a.id);
   const ib = ORDER.indexOf(b.id);
-  return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+  return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib) || a.name.localeCompare(b.name);
 });
 
 writeFileSync(OUT_FILE, JSON.stringify(categories, null, 2) + "\n");
 
-const totalNotes = categories.reduce((n, c) => n + c.notes.length, 0);
-console.log(
-  `manifest: ${categories.length} categories, ${totalNotes} notes -> src/notes-manifest.json`
-);
+const totalNotes = categories.reduce((n, category) => n + countNotes(category), 0);
+console.log(`manifest: ${categories.length} categories, ${totalNotes} notes -> src/notes-manifest.json`);

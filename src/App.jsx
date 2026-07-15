@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
-import CategoryPage from "./components/CategoryPage";
-import NotePage from "./components/NotePage";
+import ShelfRoute from "./components/ShelfRoute";
 import HldTracker from "./components/HldTracker";
 import "./App.css";
 
@@ -10,10 +9,9 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-         <Route path="/hld/tracker" element={<HldTracker />} />
-        <Route path="/:categoryId" element={<CategoryPage />} />
-        <Route path="/:categoryId/:noteId" element={<NotePage />} />
-        <Route path="*" element={<Home />} />
+        <Route path="/hld/tracker" element={<HldTracker />} />
+        {/* Any depth: /llm, /llm/rag, /llm/rag/01-what-is-rag */}
+        <Route path="/*" element={<ShelfRoute />} />
       </Routes>
     </BrowserRouter>
   );
