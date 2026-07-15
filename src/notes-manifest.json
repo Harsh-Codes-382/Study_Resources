@@ -183,13 +183,6 @@
     "path": "/AI_Engineering_Notes",
     "notes": [
       {
-        "id": "00-ai-engineer-roadmap-old",
-        "title": "AI Engineer Roadmap old",
-        "type": "pdf",
-        "file": "00-AI_Engineer_Roadmap-old.pdf",
-        "path": "/AI_Engineering_Notes/00-AI_Engineer_Roadmap-old.pdf"
-      },
-      {
         "id": "00-ai-engineer-roadmap",
         "title": "AI Engineer Roadmap",
         "type": "md",

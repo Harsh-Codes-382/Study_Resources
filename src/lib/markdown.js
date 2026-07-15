@@ -54,11 +54,11 @@ export function mdToHtml(md, basePath = "/") {
   const lines = md.replace(/\r\n/g, "\n").split("\n");
   let html = "";
   let i = 0;
-  let listType = null; // "ul" | "ol" | null
+  let listType = null; // "ul" | "ul-task" | "ol" | null
 
   const closeList = () => {
     if (listType) {
-      html += `</${listType}>`;
+      html += listType === "ol" ? "</ol>" : "</ul>";
       listType = null;
     }
   };
@@ -172,6 +172,22 @@ export function mdToHtml(md, basePath = "/") {
     // unordered list
     const ul = line.match(/^\s*[-*]\s+(.*)$/);
     if (ul) {
+      // task-list item: "- [ ] ..." / "- [x] ..." -> a read-only checkbox
+      const task = ul[1].match(/^\[([ xX])\]\s+(.*)$/);
+      if (task) {
+        if (listType !== "ul-task") {
+          closeList();
+          html += `<ul class="nb-tasks">`;
+          listType = "ul-task";
+        }
+        const checked = task[1].toLowerCase() === "x";
+        html +=
+          `<li class="nb-task${checked ? " done" : ""}">` +
+          `<input type="checkbox" disabled${checked ? " checked" : ""} />` +
+          `<span>${inline(task[2])}</span></li>`;
+        i++;
+        continue;
+      }
       if (listType !== "ul") {
         closeList();
         html += "<ul>";

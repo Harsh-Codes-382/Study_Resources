@@ -79,6 +79,21 @@ export default function CategoryPage({ category }) {
         </div>
 
         <ul className="nb-list">
+          {notes.map((n, idx) => (
+            <li key={`note-${n.id}`}>
+              <Link className="nb-item" to={`${category.url}/${encodeURIComponent(n.id)}`}>
+                <span className="nb-item-idx">
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+                <FileText size={16} className="nb-item-file" />
+                <span className="nb-item-title">{n.title}</span>
+                <span className={`nb-badge ${badgeClass(n.type)}`}>
+                  {badgeLabel(n.type)}
+                </span>
+              </Link>
+            </li>
+          ))}
+
           {subcategories.map((sub) => {
             const count = countNotes(sub);
             return (
@@ -96,21 +111,6 @@ export default function CategoryPage({ category }) {
               </li>
             );
           })}
-
-          {notes.map((n, idx) => (
-            <li key={`note-${n.id}`}>
-              <Link className="nb-item" to={`${category.url}/${encodeURIComponent(n.id)}`}>
-                <span className="nb-item-idx">
-                  {String(idx + 1).padStart(2, "0")}
-                </span>
-                <FileText size={16} className="nb-item-file" />
-                <span className="nb-item-title">{n.title}</span>
-                <span className={`nb-badge ${badgeClass(n.type)}`}>
-                  {badgeLabel(n.type)}
-                </span>
-              </Link>
-            </li>
-          ))}
 
           {subcategories.length === 0 && notes.length === 0 && (
             <li className="nb-empty">

@@ -125,6 +125,19 @@ body { display: block; place-items: normal; }
 .nb-md p{ margin:.7em 0; color:#d7e0ea; }
 .nb-md ul, .nb-md ol{ margin:.6em 0; padding-left:1.4em; color:#d7e0ea; }
 .nb-md li{ margin:.32em 0; }
+
+/* task lists ("- [ ]" / "- [x]") render as read-only checkboxes */
+.nb-md ul.nb-tasks{ list-style:none; padding-left:.1em; }
+.nb-md li.nb-task{ display:flex; align-items:flex-start; gap:.6em; }
+.nb-md li.nb-task input[type="checkbox"]{
+  appearance:none; -webkit-appearance:none; margin:.28em 0 0; flex:none;
+  width:16px; height:16px; border:1.5px solid var(--border); border-radius:4px;
+  background:var(--surface-2); cursor:default; position:relative; }
+.nb-md li.nb-task input:checked{ border-color:var(--ac); background:var(--ac); }
+.nb-md li.nb-task input:checked::after{
+  content:""; position:absolute; left:4.5px; top:1px; width:4px; height:8px;
+  border:solid #0b0f14; border-width:0 2px 2px 0; transform:rotate(45deg); }
+.nb-md li.nb-task.done > span{ color:var(--muted); text-decoration:line-through; }
 .nb-md a{ color:var(--ac); text-decoration:none; border-bottom:1px solid transparent; }
 .nb-md a:hover{ border-bottom-color:var(--ac); }
 .nb-md strong{ color:#fff; font-weight:640; }

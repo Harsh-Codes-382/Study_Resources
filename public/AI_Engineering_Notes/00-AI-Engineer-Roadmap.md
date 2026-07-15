@@ -25,11 +25,11 @@ For any requirement, climb only as far as it takes to solve it. Reaching for a h
 
 Get the concepts crisp so nothing downstream feels like magic. This rung is about **understanding** how models work — not building them.
 
-- [ ] Tokens, context windows, temperature, sampling, streaming — the levers of cost, latency & limits
-- [ ] Embeddings & vector similarity (cosine) — the single key idea behind RAG
-- [ ] Transformer architecture — **conceptual only**: attention, next-token prediction. You use it, you don't build it
-- [ ] The customization ladder — prompt vs RAG vs fine-tune vs train, and when each applies
-- [ ] Model landscape — frontier (Claude Opus 4.8 / Sonnet 4.6 / Haiku 4.5, GPT) vs open-weight (Llama, Mistral, Qwen, Gemma)
+- [x] Tokens, context windows, temperature, sampling, streaming — the levers of cost, latency & limits
+- [x] Embeddings & vector similarity (cosine) — the single key idea behind RAG
+- [x] Transformer architecture — **conceptual only**: attention, next-token prediction. You use it, you don't build it
+- [x] The customization ladder — prompt vs RAG vs fine-tune vs train, and when each applies
+- [x] Model landscape — frontier (Claude Opus 4.8 / Sonnet 4.6 / Haiku 4.5, GPT) vs open-weight (Llama, Mistral, Qwen, Gemma)
 - [ ] Practical Python + environment setup (`venv`, `pip`, notebooks)
 
 > **MILESTONE** &nbsp; Nothing to ship — write a one-page **"how an LLM works"** in your own words. If you can explain tokens, embeddings and the ladder plainly, you're ready.
@@ -41,7 +41,7 @@ Get the concepts crisp so nothing downstream feels like magic. This rung is abou
 The core interface between your code and a model. **Everything else is built on this.**
 Prompts here are code you write — assembled programmatically on every request.
 
-- [ ] Call an LLM API — message roles (system / user / assistant), params, streaming, multi-turn state
+- [x] Call an LLM API — message roles (system / user / assistant), params, streaming, multi-turn state
 - [ ] Prompt engineering for reliability — system prompts, few-shot examples, delimiter/XML structuring, role & tone
 - [ ] Structured output — force JSON / schema your code can parse deterministically
 - [ ] Tool / function calling — the foundation of **every** agent
