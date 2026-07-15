@@ -15,8 +15,14 @@
 export function mdToHtml(md, basePath = "/") {
   const base = basePath.endsWith("/") ? basePath : basePath + "/";
 
+  // Escape HTML-special chars, but leave existing entity references
+  // (e.g. &nbsp;, &amp;, &#39;) intact so authored entities survive instead of
+  // becoming literal "&nbsp;" text.
   const esc = (s) =>
-    s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    s
+      .replace(/&(?!(?:[a-zA-Z][a-zA-Z0-9]*|#\d+|#x[0-9a-fA-F]+);)/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
 
   // absolute URLs / data URIs / root-absolute paths are left alone;
   // everything else is resolved against the note's folder.
@@ -28,6 +34,9 @@ export function mdToHtml(md, basePath = "/") {
 
   const inline = (s) =>
     esc(s)
+      // restore a small allowlist of safe inline HTML tags that esc() escaped,
+      // so authored <sup>/<sub> render instead of showing as literal text.
+      .replace(/&lt;(\/?)(sup|sub)&gt;/g, "<$1$2>")
       // images first (they start with '!', links don't)
       .replace(
         /!\[([^\]]*)\]\(([^)]+)\)/g,
