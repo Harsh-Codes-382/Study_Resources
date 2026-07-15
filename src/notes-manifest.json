@@ -274,11 +274,18 @@
     "path": "/HLD_Notes",
     "notes": [
       {
-        "id": "url-shortener-tinyurl",
-        "title": "url shortener tinyurl",
+        "id": "distributed-cache",
+        "title": "Distributed Cache",
         "type": "md",
-        "file": "url-shortener-tinyurl.md",
-        "path": "/HLD_Notes/url-shortener-tinyurl.md"
+        "file": "Distributed-Cache.md",
+        "path": "/HLD_Notes/Distributed-Cache.md"
+      },
+      {
+        "id": "url-shortener-tinyurl",
+        "title": "URL Shortener tinyurl",
+        "type": "md",
+        "file": "URL-Shortener-tinyurl.md",
+        "path": "/HLD_Notes/URL-Shortener-tinyurl.md"
       }
     ],
     "categories": []

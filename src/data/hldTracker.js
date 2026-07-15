@@ -28,7 +28,7 @@ export const HLD_TIERS = [
       { name: "Text Storage (Pastebin)" },
       { name: "Authentication System" },
       { name: "Content Delivery Network (CDN)" },
-      { name: "Distributed Cache" },
+      { name: "Distributed Cache", status: "done" },
       { name: "Distributed Job Scheduler" },
       { name: "Distributed Key-Value Store" },
     ],
