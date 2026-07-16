@@ -163,6 +163,43 @@ body { display: block; place-items: normal; }
   font-size:12px; background:#0a0f15; border:1px solid var(--border); border-radius:9px;
   padding:14px 16px; text-align:left; white-space:pre-wrap; }
 
+/* Rendered diagrams are clickable → open the zoom/pan lightbox */
+.nb-md .mermaid.nb-zoomable{ position:relative; cursor:zoom-in;
+  border:1px solid transparent; border-radius:9px; transition:border-color .15s; }
+.nb-md .mermaid.nb-zoomable:hover{ border-color:var(--accent-border); }
+.nb-md .mermaid.nb-zoomable::after{ content:"⤢ click to zoom"; position:absolute;
+  top:8px; right:10px; font:600 11px/1 var(--sans); letter-spacing:.2px;
+  color:var(--accent); background:var(--accent-bg); border:1px solid var(--accent-border);
+  padding:4px 8px; border-radius:999px; opacity:0; transition:opacity .15s;
+  pointer-events:none; }
+.nb-md .mermaid.nb-zoomable:hover::after{ opacity:1; }
+
+/* Diagram lightbox (portal to <body>) */
+.nb-dlb-overlay{ position:fixed; inset:0; z-index:1000; display:flex;
+  align-items:center; justify-content:center; padding:2.5rem;
+  background:rgba(6,6,10,.82); backdrop-filter:blur(4px);
+  animation:nb-dlb-fade .14s ease-out; }
+@keyframes nb-dlb-fade{ from{ opacity:0 } to{ opacity:1 } }
+.nb-dlb-stage{ width:100%; height:100%; overflow:hidden; cursor:grab;
+  touch-action:none; }
+.nb-dlb-stage:active{ cursor:grabbing; }
+.nb-dlb-content{ transform-origin:0 0; will-change:transform; }
+.nb-dlb-content svg{ display:block; }
+.nb-dlb-toolbar{ position:absolute; top:16px; right:16px; display:flex; gap:8px;
+  z-index:2; }
+.nb-dlb-toolbar button{ display:grid; place-items:center; width:38px; height:38px;
+  color:var(--text-h); background:var(--code-bg); border:1px solid var(--border);
+  border-radius:9px; cursor:pointer; transition:border-color .15s, color .15s; }
+.nb-dlb-toolbar button:hover{ color:var(--accent); border-color:var(--accent-border); }
+.nb-dlb-hint{ position:absolute; bottom:16px; left:50%; transform:translateX(-50%);
+  margin:0; font:500 12px/1 var(--sans); color:#cbd5e1;
+  background:rgba(6,6,10,.6); border:1px solid var(--border);
+  padding:7px 13px; border-radius:999px; pointer-events:none; }
+@media (max-width:640px){
+  .nb-dlb-overlay{ padding:1rem; }
+  .nb-dlb-hint{ display:none; }
+}
+
 /* GitHub-style tables */
 .nb-md table{ width:100%; border-collapse:collapse; margin:1.1em 0; font-size:13px; }
 .nb-md th, .nb-md td{ border:1px solid var(--border); padding:8px 11px; text-align:left;

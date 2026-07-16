@@ -29,7 +29,7 @@ export const HLD_TIERS = [
       { name: "Authentication System" },
       { name: "Content Delivery Network (CDN)" },
       { name: "Distributed Cache", status: "done" },
-      { name: "Distributed Job Scheduler" },
+      { name: "Distributed Job Scheduler", status: "done" },
       { name: "Distributed Key-Value Store" },
     ],
   },

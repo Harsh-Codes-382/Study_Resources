@@ -69,57 +69,40 @@ Single-key operations only — no joins, no range scans. That simplicity is exac
 
 Every service instance carries a **sidecar proxy** (a small helper process next to the app). The sidecar knows the cache topology and does the routing, so the app just says "get this key."
 
-```
-                          ┌──────────────────────────────┐
-                          │   Config service (etcd/ZK)    │
-                          │  - source of truth for the    │
-                          │    cluster topology (the ring)│
-                          │  - tracks which nodes are UP   │
-                          └──────────────────────────────┘
-                             ▲  (1) nodes register        │
-              heartbeat/lease │      via TTL lease         │ (2) pushes topology
-              (node → etcd)   │                            │     changes via WATCH
-                              │                            ▼   (etcd → sidecar)
-   Client                     │                    ┌───────────────┐
-     │                        │                    │  Sidecar's     │
-     ▼                        │                    │  LOCAL copy of │
- API Gateway                  │                    │  the ring      │
-     │                        │                    └───────────────┘
-     ▼                        │                            ▲
- Load Balancer                │                            │ (used on every request,
-     │                        │                            │  NOT etcd — see note)
-     ▼                        │                            │
- ┌─────────────────────┐      │                            │
- │  Service instance    │     │                            │
- │  ┌───────────────┐   │     │                            │
- │  │  App code     │   │     │                            │
- │  └──────┬────────┘   │     │                            │
- │         │ get(key)   │     │                            │
- │         ▼            │     │                            │
- │  ┌───────────────┐   │◄────┘ (registers + watches)      │
- │  │ Sidecar proxy │───┼─────────────────────────────────┘
- │  │  - hash(key)  │   │
- │  │  → find shard │   │        (3) route to the OWNING shard's node
- │  └──────┬────────┘   │
- └─────────┼────────────┘
-           │
-           ▼
- ┌──────────────── Cache tier (sharded by consistent hashing) ────────────────┐
- │                                                                             │
- │   Shard A (cluster)      Shard B (cluster)       Shard C (cluster)          │
- │   ┌────────────┐         ┌────────────┐          ┌────────────┐            │
- │   │  Master    │         │  Master    │          │  Master    │            │
- │   │   │ async   │         │   │ async  │          │   │ async  │            │
- │   │   ▼        │         │   ▼        │          │   ▼        │            │
- │   │ Slave Slave│         │ Slave Slave│          │ Slave Slave│            │
- │   └────────────┘         └────────────┘          └────────────┘            │
- │         │                                                                   │
- └─────────┼───────────────────────────────────────────────────────────────┘
-           │ (4) on cache MISS
-           ▼
-     ┌───────────┐
-     │  Database  │  (source of truth)
-     └───────────┘
+```mermaid
+flowchart TD
+    Client -->|get / set| GW[API Gateway]
+    GW --> LB[Load Balancer]
+    LB --> APP[App code<br/>on a service instance]
+    APP -->|get key| SC[Sidecar proxy<br/>hash key then find owning shard]
+    SC --> RING[Sidecar's LOCAL copy of the ring<br/>read on every request, NOT etcd]
+
+    CFG[(Config service: etcd / ZK<br/>source of truth for topology<br/>tracks which nodes are UP)]
+    CFG -.->|2: push topology changes via WATCH| RING
+
+    SC -->|3: route to the OWNING shard's master| MA
+
+    subgraph TIER [Cache tier - sharded by consistent hashing]
+        direction LR
+        subgraph SA [Shard A]
+            MA[Master] -.->|async replicate| SLA[Slave · Slave]
+        end
+        subgraph SB [Shard B]
+            MB[Master] -.->|async replicate| SLB[Slave · Slave]
+        end
+        subgraph SCc [Shard C]
+            MC[Master] -.->|async replicate| SLC[Slave · Slave]
+        end
+    end
+
+    MA -.->|1: register via TTL lease / heartbeat| CFG
+    MB -.-> CFG
+    MC -.-> CFG
+
+    MA -->|4: on cache MISS| DB[(Database<br/>source of truth)]
+
+    classDef ctrl fill:#fff3cd,stroke:#d39e00;
+    class CFG ctrl;
 ```
 
 **Read flow (numbered):**
