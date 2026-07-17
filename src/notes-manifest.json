@@ -261,6 +261,13 @@
             "type": "md",
             "file": "01-Calling-an-LLM-API.md",
             "path": "/AI_Engineering_Notes/LLM%20API%20and%20Prompt%20Engineering/01-Calling-an-LLM-API.md"
+          },
+          {
+            "id": "02-prompt-engineering-for-reliability",
+            "title": "Prompt Engineering for Reliability",
+            "type": "md",
+            "file": "02-Prompt-Engineering-for-Reliability.md",
+            "path": "/AI_Engineering_Notes/LLM%20API%20and%20Prompt%20Engineering/02-Prompt-Engineering-for-Reliability.md"
           }
         ],
         "categories": []

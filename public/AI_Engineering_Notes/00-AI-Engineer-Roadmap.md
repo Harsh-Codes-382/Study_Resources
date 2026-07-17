@@ -42,7 +42,7 @@ The core interface between your code and a model. **Everything else is built on 
 Prompts here are code you write — assembled programmatically on every request.
 
 - [x] Call an LLM API — message roles (system / user / assistant), params, streaming, multi-turn state
-- [ ] Prompt engineering for reliability — system prompts, few-shot examples, delimiter/XML structuring, role & tone
+- [x] Prompt engineering for reliability — system prompts, few-shot examples, delimiter/XML structuring, role & tone
 - [ ] Structured output — force JSON / schema your code can parse deterministically
 - [ ] Tool / function calling — the foundation of **every** agent
 - [ ] Token / cost / latency budgeting; prompt caching; model-per-task selection
