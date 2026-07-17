@@ -4,6 +4,13 @@ import { ArrowLeft, Search, FileText, Folder, ChevronRight, ListChecks } from "l
 import Layout from "./Layout";
 import { badgeLabel, badgeClass, countNotes } from "../data/categories";
 import { hldProgress } from "../data/hldTracker";
+import { lldProgress } from "../data/lldTracker";
+
+// Category id -> its roadmap tracker. Add an entry to surface a tracker CTA.
+const TRACKERS = {
+  hld: { progress: hldProgress, url: "/hld/tracker", label: "HLD roadmap tracker", unit: "designs" },
+  lld: { progress: lldProgress, url: "/lld/tracker", label: "LLD roadmap tracker", unit: "problems" },
+};
 
 export default function CategoryPage({ category }) {
   const [query, setQuery] = useState("");
@@ -33,8 +40,8 @@ export default function CategoryPage({ category }) {
   }
 
   const Icon = category.icon;
-  const showTracker = category.id === "hld";
-  const p = showTracker ? hldProgress() : null;
+  const tracker = TRACKERS[category.id];
+  const p = tracker ? tracker.progress() : null;
   const isRoot = category.idTrail.length === 1;
 
   return (
@@ -54,15 +61,15 @@ export default function CategoryPage({ category }) {
           </div>
         </div>
 
-        {showTracker && (
-          <Link className="trk-cta" to="/hld/tracker">
+        {tracker && (
+          <Link className={`trk-cta ${category.id}`} to={tracker.url}>
             <span className="trk-cta-l">
               <span className="trk-cta-title">
                 <ListChecks size={15} style={{ verticalAlign: "-2px", marginRight: 6 }} />
-                HLD roadmap tracker
+                {tracker.label}
               </span>
               <span className="trk-cta-sub">
-                {p.done}/{p.total} designs complete — see what’s done, doing, and next
+                {p.done}/{p.total} {tracker.unit} complete — see what’s done, doing, and next
               </span>
             </span>
             <span className="trk-cta-go">Open tracker →</span>

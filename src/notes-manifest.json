@@ -312,6 +312,14 @@
     "categories": []
   },
   {
+    "id": "lld",
+    "name": "LLD",
+    "folder": "LLD_Notes",
+    "path": "/LLD_Notes",
+    "notes": [],
+    "categories": []
+  },
+  {
     "id": "cn",
     "name": "CN",
     "folder": "CN_Notes",

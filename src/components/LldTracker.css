@@ -1,0 +1,21 @@
+/* src/components/LldTracker.css
+   Green-accent overrides for the LLD tracker. Reuses every .trk-* rule from
+   HldTracker.css and only re-points the accent (cyan -> green #4ade80) so the
+   LLD tracker matches its category card. LldTracker.jsx is loaded statically by
+   App.jsx, so the .trk-cta.lld rule below is available on the LLD category page
+   too. */
+
+.lld-scope { --accent:#4ade80; --accent-dim:#2f9e57; }
+
+.lld-scope .trk-ring-fill,
+.lld-scope .trk-tier.easy .trk-tier-label { stroke: #4ade80; }
+
+.lld-scope .trk-note-link {
+  color:#4ade80; border-color:#2f9e57; background:rgba(74,222,128,.08);
+}
+.lld-scope .trk-note-link:hover { background:rgba(74,222,128,.16); }
+
+/* the tracker card shown on the LLD category page */
+.trk-cta.lld { border-color:#2f9e57; background:rgba(74,222,128,.06); }
+.trk-cta.lld:hover { background:rgba(74,222,128,.12); }
+.trk-cta.lld .trk-cta-go { color:#4ade80; }
