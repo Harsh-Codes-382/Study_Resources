@@ -21,8 +21,6 @@ export const HLD_TIERS = [
     label: "Easy",
     blurb: "Bounded scope · object modelling & entry-level distributed systems",
     topics: [
-      { name: "Vending Machine" },
-      { name: "Parking Garage" },
       { name: "URL Shortener (TinyURL)", status: "done" },
       { name: "Online Bookstore (Amazon)" },
       { name: "Text Storage (Pastebin)" },
