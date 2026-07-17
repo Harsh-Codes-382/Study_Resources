@@ -268,6 +268,13 @@
             "type": "md",
             "file": "02-Prompt-Engineering-for-Reliability.md",
             "path": "/AI_Engineering_Notes/LLM%20API%20and%20Prompt%20Engineering/02-Prompt-Engineering-for-Reliability.md"
+          },
+          {
+            "id": "03-structured-output",
+            "title": "Structured Output",
+            "type": "md",
+            "file": "03-Structured-Output.md",
+            "path": "/AI_Engineering_Notes/LLM%20API%20and%20Prompt%20Engineering/03-Structured-Output.md"
           }
         ],
         "categories": []
