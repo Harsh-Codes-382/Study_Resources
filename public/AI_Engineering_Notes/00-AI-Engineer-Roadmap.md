@@ -44,7 +44,7 @@ Prompts here are code you write — assembled programmatically on every request.
 - [x] Call an LLM API — message roles (system / user / assistant), params, streaming, multi-turn state
 - [x] Prompt engineering for reliability — system prompts, few-shot examples, delimiter/XML structuring, role & tone
 - [x] Structured output — force JSON / schema your code can parse deterministically
-- [ ] Tool / function calling — the foundation of **every** agent
+- [x] Tool / function calling — the foundation of **every** agent
 - [ ] Token / cost / latency budgeting; prompt caching; model-per-task selection
 - [ ] Treat the model as a flaky dependency — retries, timeouts, output validation, fallbacks
 

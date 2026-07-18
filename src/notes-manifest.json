@@ -275,6 +275,13 @@
             "type": "md",
             "file": "03-Structured-Output.md",
             "path": "/AI_Engineering_Notes/LLM%20API%20and%20Prompt%20Engineering/03-Structured-Output.md"
+          },
+          {
+            "id": "04-tool-function-calling",
+            "title": "Tool Function Calling",
+            "type": "md",
+            "file": "04-Tool-Function-Calling.md",
+            "path": "/AI_Engineering_Notes/LLM%20API%20and%20Prompt%20Engineering/04-Tool-Function-Calling.md"
           }
         ],
         "categories": []
