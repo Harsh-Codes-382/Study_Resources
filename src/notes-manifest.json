@@ -289,6 +289,13 @@
             "type": "md",
             "file": "05-Cost-Latency-and-Model-Selection.md",
             "path": "/AI_Engineering_Notes/LLM%20API%20and%20Prompt%20Engineering/05-Cost-Latency-and-Model-Selection.md"
+          },
+          {
+            "id": "06-model-as-flaky-dependency",
+            "title": "Model as Flaky Dependency",
+            "type": "md",
+            "file": "06-Model-as-Flaky-Dependency.md",
+            "path": "/AI_Engineering_Notes/LLM%20API%20and%20Prompt%20Engineering/06-Model-as-Flaky-Dependency.md"
           }
         ],
         "categories": []

@@ -46,7 +46,7 @@ Prompts here are code you write — assembled programmatically on every request.
 - [x] Structured output — force JSON / schema your code can parse deterministically
 - [x] Tool / function calling — the foundation of **every** agent
 - [x] Token / cost / latency budgeting; prompt caching; model-per-task selection
-- [ ] Treat the model as a flaky dependency — retries, timeouts, output validation, fallbacks
+- [x] Treat the model as a flaky dependency — retries, timeouts, output validation, fallbacks
 
 > **PROJECT** &nbsp; Natural-language → action endpoint. Plain-English request → tool-call → real query against a Postgres DB → returned result.
 
