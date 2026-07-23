@@ -299,6 +299,22 @@
           }
         ],
         "categories": []
+      },
+      {
+        "id": "vectordb",
+        "name": "VectorDB",
+        "folder": "VectorDB",
+        "path": "/AI_Engineering_Notes/VectorDB",
+        "notes": [
+          {
+            "id": "01-vector-databases-and-pinecone",
+            "title": "Vector Databases and Pinecone",
+            "type": "md",
+            "file": "01-Vector-Databases-and-Pinecone.md",
+            "path": "/AI_Engineering_Notes/VectorDB/01-Vector-Databases-and-Pinecone.md"
+          }
+        ],
+        "categories": []
       }
     ]
   },
