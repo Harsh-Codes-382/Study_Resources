@@ -312,6 +312,13 @@
             "type": "md",
             "file": "01-Vector-Databases-and-Pinecone.md",
             "path": "/AI_Engineering_Notes/VectorDB/01-Vector-Databases-and-Pinecone.md"
+          },
+          {
+            "id": "02-index-namespace-record",
+            "title": "Index Namespace Record",
+            "type": "md",
+            "file": "02-Index-Namespace-Record.md",
+            "path": "/AI_Engineering_Notes/VectorDB/02-Index-Namespace-Record.md"
           }
         ],
         "categories": []
