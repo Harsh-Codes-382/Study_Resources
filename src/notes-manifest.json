@@ -326,6 +326,13 @@
             "type": "md",
             "file": "03-Distance-Metrics.md",
             "path": "/AI_Engineering_Notes/VectorDB/03-Distance-Metrics.md"
+          },
+          {
+            "id": "04-ann-and-hnsw",
+            "title": "ANN and HNSW",
+            "type": "md",
+            "file": "04-ANN-and-HNSW.md",
+            "path": "/AI_Engineering_Notes/VectorDB/04-ANN-and-HNSW.md"
           }
         ],
         "categories": []
