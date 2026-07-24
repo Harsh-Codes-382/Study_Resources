@@ -319,6 +319,13 @@
             "type": "md",
             "file": "02-Index-Namespace-Record.md",
             "path": "/AI_Engineering_Notes/VectorDB/02-Index-Namespace-Record.md"
+          },
+          {
+            "id": "03-distance-metrics",
+            "title": "Distance Metrics",
+            "type": "md",
+            "file": "03-Distance-Metrics.md",
+            "path": "/AI_Engineering_Notes/VectorDB/03-Distance-Metrics.md"
           }
         ],
         "categories": []
