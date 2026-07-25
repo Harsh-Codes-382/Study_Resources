@@ -57,6 +57,8 @@ Every vector DB has the same handful of concepts (Pinecone's names shown):
 
 > ⚠️ **Dimension is fixed at index creation.** If you switch embedding models to one with a different output size, you build a **new** index — you cannot resize.
 
+> 📖 **Full deep-dive: [note 02 — Index vs Namespace vs Record](./02-Index-Namespace-Record.md)**
+
 ---
 
 ## 3. Distance metrics — how "closeness" is measured
@@ -68,6 +70,8 @@ Every vector DB has the same handful of concepts (Pinecone's names shown):
 | **euclidean (L2)** | straight-line distance | image / spatial embeddings |
 
 **Rule:** use the metric your embedding model's docs recommend. For most text models that's **cosine**. Mismatching the metric silently hurts result quality.
+
+> 📖 **Full deep-dive: [note 03 — Distance Metrics](./03-Distance-Metrics.md)**
 
 ---
 
@@ -92,6 +96,8 @@ flowchart TB
 ```
 
 You don't implement HNSW — Pinecone (and `pgvector`, Qdrant, etc.) do it for you. What you **do** control is the trade-off knob: more accuracy (higher recall) vs. lower latency/cost.
+
+> 📖 **Full deep-dive: [note 04 — ANN & HNSW](./04-ANN-and-HNSW.md)** — the search & build flows step by step, the `M` / `efConstruction` / `efSearch` knobs, why speed scales with log(n), and what HNSW is bad at.
 
 ---
 
@@ -229,24 +235,33 @@ Staged like the main AI-Engineer roadmap. This is the **storage-and-search** pat
 
 ### `0` · Concepts &nbsp; `UNDERSTAND FIRST` &nbsp; `~2 DAYS`
 
-- [ ] Index vs namespace vs record — the core objects
-- [ ] Dimension **must** match your embedding model; you can't resize an index
-- [ ] Distance metrics — cosine / dotproduct / euclidean, and matching metric to model
-- [ ] ANN vs brute force; HNSW at a conceptual level (why search is millisecond-fast)
-- [ ] Local vs cloud stores — `pgvector` / Chroma / Qdrant vs Pinecone (cloud-only)
+- [ ] Index vs namespace vs record — the core objects → **[note 02](./02-Index-Namespace-Record.md)**
+- [ ] Dimension **must** match your embedding model; you can't resize an index → **[note 02](./02-Index-Namespace-Record.md)**
+- [ ] Distance metrics — cosine / dotproduct / euclidean, and matching metric to model → **[note 03](./03-Distance-Metrics.md)**
+- [ ] ANN vs brute force; HNSW at a conceptual level (why search is millisecond-fast) → **[note 04](./04-ANN-and-HNSW.md)**
+- [ ] Local vs cloud stores — `pgvector` / Chroma / Qdrant vs Pinecone (cloud-only) → §5 above
 
 > **MILESTONE** — In your own words: "what does a vector DB do that a normal DB can't, and when is a *managed* one worth paying for?"
 
 ### `1` · First index, first query &nbsp; `~3 DAYS`
 
 - [ ] Account, API key, `pinecone` client setup
-- [ ] Create a **serverless** index (start here — no capacity planning)
+- [ ] ⚠️ **Pick your embedding source FIRST** — `upsert` takes vectors, not text, and the index's `dimension` must match whatever produces them. Free & offline: `sentence-transformers` → `all-MiniLM-L6-v2` (**384 dims**). Paid: OpenAI (1536). Or Pinecone's **integrated embedding** (upsert raw text, Pinecone embeds it — less wiring, but hides this step).
+- [ ] Create a **serverless** index (start here — no capacity planning) — `dimension` from the line above, `metric="cosine"`
+- [ ] ⚠️ **Wait for ready** — `create_index` returns *before* the index is queryable; poll `describe_index(name).status` until ready
 - [ ] `upsert` vectors with IDs + metadata
+- [ ] ⚠️ **Upserts are eventually consistent** — a `query` immediately after an `upsert` can legitimately return nothing, and `describe_index_stats` can lag. Expect the delay; don't debug a bug that isn't there.
 - [ ] `query` — top-k, `include_metadata`, `include_values`
 - [ ] Metadata filtering — `filter={"source": {"$eq": "aws"}}`
 - [ ] `fetch`, `update`, `delete`, `describe_index_stats`
 
 > **PROJECT** — Ingest ~500 embedded entries from a dataset you own (e.g. your AWS notes) into a free serverless index, then run semantic search. Success = returned entries are genuinely the closest in meaning. *(No LLM — pure retrieval.)*
+>
+> **Splitting the source text — do the crude version.** A file like `09_EC2.md` is far too long to embed as one vector, so split each note on its `##` headings → one vector per section. Keep `{"file": ..., "section": ...}` in metadata so results are traceable. That's enough to get data in.
+>
+> ⛔ **Do NOT go down the chunking rabbit hole here** — overlap, token-window sizing, semantic splitting, parent-document retrieval all belong to the **RAG track**, not this one.
+>
+> 🔑 **The scope line:** if a step changes *what text becomes a vector*, it's **RAG**. If it changes *how vectors are stored or found*, it's **vector DB**. Only the second kind belongs in this roadmap.
 
 ### `2` · Namespaces & data organization &nbsp; `~2 DAYS`
 
