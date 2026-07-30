@@ -333,6 +333,13 @@
             "type": "md",
             "file": "04-ANN-and-HNSW.md",
             "path": "/AI_Engineering_Notes/VectorDB/04-ANN-and-HNSW.md"
+          },
+          {
+            "id": "05-chunking-strategies",
+            "title": "Chunking Strategies",
+            "type": "md",
+            "file": "05-Chunking-Strategies.md",
+            "path": "/AI_Engineering_Notes/VectorDB/05-Chunking-Strategies.md"
           }
         ],
         "categories": []

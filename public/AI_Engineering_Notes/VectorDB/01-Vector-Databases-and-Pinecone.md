@@ -259,9 +259,11 @@ Staged like the main AI-Engineer roadmap. This is the **storage-and-search** pat
 >
 > **Splitting the source text — do the crude version.** A file like `09_EC2.md` is far too long to embed as one vector, so split each note on its `##` headings → one vector per section. Keep `{"file": ..., "section": ...}` in metadata so results are traceable. That's enough to get data in.
 >
-> ⛔ **Do NOT go down the chunking rabbit hole here** — overlap, token-window sizing, semantic splitting, parent-document retrieval all belong to the **RAG track**, not this one.
+> ⚠️ **Superseded — see [note 05](./05-Chunking-Strategies.md).** This block used to say "do NOT go down the chunking rabbit hole here." That call was wrong: chunking decides *what becomes a vector*, and nothing downstream can recover from getting it wrong. It belongs in this track, as the ingestion step. The crude `##`-heading split above is still the right *first* thing to ship — just don't stop there.
 >
-> 🔑 **The scope line:** if a step changes *what text becomes a vector*, it's **RAG**. If it changes *how vectors are stored or found*, it's **vector DB**. Only the second kind belongs in this roadmap.
+> 🔑 **The corrected scope line:** if a step changes *what text becomes a vector*, it's **ingestion — this track** (note 05). If it changes *how the LLM uses the retrieved text* (prompt construction, grounding, citations, answer generation), it's **RAG** — a separate note.
+>
+> 📖 **Full deep-dive: [note 05 — Chunking Strategies](./05-Chunking-Strategies.md)** — why chunk (dilution, not just model limits), size & overlap numbers, structural/recursive/semantic splitting, enrichment & decoupling, and how to measure any of it.
 
 ### `2` · Namespaces & data organization &nbsp; `~2 DAYS`
 
