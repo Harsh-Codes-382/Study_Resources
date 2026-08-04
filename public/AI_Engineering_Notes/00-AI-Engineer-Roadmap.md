@@ -57,10 +57,10 @@ Prompts here are code you write — assembled programmatically on every request.
 How an assistant answers questions about **your** data. Facts live here — not in fine-tuning.
 This is the "answer things" half of a copilot.
 
-- [ ] Embeddings in depth; choosing an embedding model
-- [ ] Vector stores — `pgvector` first (reuse Postgres), then Qdrant / Pinecone; HNSW indexing, metadata filtering
-- [ ] Chunking strategies — size, overlap, semantic & structural splitting
-- [ ] Full RAG pipeline — ingest → embed → retrieve → ground → cite
+- [x] Embeddings in depth; choosing an embedding model
+- [x] Vector stores — `pgvector` first (reuse Postgres), then Qdrant / Pinecone; HNSW indexing, metadata filtering
+- [x] Chunking strategies — size, overlap, semantic & structural splitting
+- [x] Full RAG pipeline — ingest → embed → retrieve → ground → cite
 - [ ] Hybrid search (semantic + keyword/BM25) & re-ranking — pure vectors alone are rarely enough
 - [ ] Grounding & anti-hallucination — citations, and a graceful "I don't know"
 - [ ] RAG evaluation — did you retrieve the *right* context?
