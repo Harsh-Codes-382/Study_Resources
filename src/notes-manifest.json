@@ -301,48 +301,65 @@
         "categories": []
       },
       {
-        "id": "vectordb",
-        "name": "VectorDB",
-        "folder": "VectorDB",
-        "path": "/AI_Engineering_Notes/VectorDB",
+        "id": "rag",
+        "name": "RAG",
+        "folder": "RAG",
+        "path": "/AI_Engineering_Notes/RAG",
         "notes": [
-          {
-            "id": "01-vector-databases-and-pinecone",
-            "title": "Vector Databases and Pinecone",
-            "type": "md",
-            "file": "01-Vector-Databases-and-Pinecone.md",
-            "path": "/AI_Engineering_Notes/VectorDB/01-Vector-Databases-and-Pinecone.md"
-          },
-          {
-            "id": "02-index-namespace-record",
-            "title": "Index Namespace Record",
-            "type": "md",
-            "file": "02-Index-Namespace-Record.md",
-            "path": "/AI_Engineering_Notes/VectorDB/02-Index-Namespace-Record.md"
-          },
-          {
-            "id": "03-distance-metrics",
-            "title": "Distance Metrics",
-            "type": "md",
-            "file": "03-Distance-Metrics.md",
-            "path": "/AI_Engineering_Notes/VectorDB/03-Distance-Metrics.md"
-          },
-          {
-            "id": "04-ann-and-hnsw",
-            "title": "ANN and HNSW",
-            "type": "md",
-            "file": "04-ANN-and-HNSW.md",
-            "path": "/AI_Engineering_Notes/VectorDB/04-ANN-and-HNSW.md"
-          },
           {
             "id": "05-chunking-strategies",
             "title": "Chunking Strategies",
             "type": "md",
             "file": "05-Chunking-Strategies.md",
-            "path": "/AI_Engineering_Notes/VectorDB/05-Chunking-Strategies.md"
+            "path": "/AI_Engineering_Notes/RAG/05-Chunking-Strategies.md"
+          },
+          {
+            "id": "06-hybrid-search-bm25-rrf-reranking",
+            "title": "Hybrid Search BM25 RRF Reranking",
+            "type": "md",
+            "file": "06-Hybrid-Search-BM25-RRF-Reranking.md",
+            "path": "/AI_Engineering_Notes/RAG/06-Hybrid-Search-BM25-RRF-Reranking.md"
           }
         ],
-        "categories": []
+        "categories": [
+          {
+            "id": "vectordb",
+            "name": "VectorDB",
+            "folder": "VectorDB",
+            "path": "/AI_Engineering_Notes/RAG/VectorDB",
+            "notes": [
+              {
+                "id": "01-vector-databases-and-pinecone",
+                "title": "Vector Databases and Pinecone",
+                "type": "md",
+                "file": "01-Vector-Databases-and-Pinecone.md",
+                "path": "/AI_Engineering_Notes/RAG/VectorDB/01-Vector-Databases-and-Pinecone.md"
+              },
+              {
+                "id": "02-index-namespace-record",
+                "title": "Index Namespace Record",
+                "type": "md",
+                "file": "02-Index-Namespace-Record.md",
+                "path": "/AI_Engineering_Notes/RAG/VectorDB/02-Index-Namespace-Record.md"
+              },
+              {
+                "id": "03-distance-metrics",
+                "title": "Distance Metrics",
+                "type": "md",
+                "file": "03-Distance-Metrics.md",
+                "path": "/AI_Engineering_Notes/RAG/VectorDB/03-Distance-Metrics.md"
+              },
+              {
+                "id": "04-ann-and-hnsw",
+                "title": "ANN and HNSW",
+                "type": "md",
+                "file": "04-ANN-and-HNSW.md",
+                "path": "/AI_Engineering_Notes/RAG/VectorDB/04-ANN-and-HNSW.md"
+              }
+            ],
+            "categories": []
+          }
+        ]
       }
     ]
   },
@@ -372,6 +389,13 @@
         "type": "md",
         "file": "03-Distributed-Job-Scheduler.md",
         "path": "/HLD_Notes/03-Distributed-Job-Scheduler.md"
+      },
+      {
+        "id": "04-multi-tenant-auth-sso-saml-scim",
+        "title": "Multi Tenant Auth SSO SAML SCIM",
+        "type": "md",
+        "file": "04-Multi-Tenant-Auth-SSO-SAML-SCIM.md",
+        "path": "/HLD_Notes/04-Multi-Tenant-Auth-SSO-SAML-SCIM.md"
       }
     ],
     "categories": []
