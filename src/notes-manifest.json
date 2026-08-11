@@ -192,6 +192,22 @@
     ],
     "categories": [
       {
+        "id": "agents-and-mcp",
+        "name": "Agents and MCP",
+        "folder": "Agents and MCP",
+        "path": "/AI_Engineering_Notes/Agents%20and%20MCP",
+        "notes": [
+          {
+            "id": "01-agent-loop-and-multi-tool-orchestration",
+            "title": "Agent Loop and Multi Tool Orchestration",
+            "type": "md",
+            "file": "01-Agent-Loop-and-Multi-Tool-Orchestration.md",
+            "path": "/AI_Engineering_Notes/Agents%20and%20MCP/01-Agent-Loop-and-Multi-Tool-Orchestration.md"
+          }
+        ],
+        "categories": []
+      },
+      {
         "id": "how-llm-works",
         "name": "How LLM Works",
         "folder": "How LLM Works",
