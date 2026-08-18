@@ -30,7 +30,7 @@ Get the concepts crisp so nothing downstream feels like magic. This rung is abou
 - [x] Transformer architecture — **conceptual only**: attention, next-token prediction. You use it, you don't build it
 - [x] The customization ladder — prompt vs RAG vs fine-tune vs train, and when each applies
 - [x] Model landscape — frontier (Claude Opus 4.8 / Sonnet 4.6 / Haiku 4.5, GPT) vs open-weight (Llama, Mistral, Qwen, Gemma)
-- [ ] Practical Python + environment setup (`venv`, `pip`, notebooks)
+- [x] Practical Python + environment setup (`venv`, `pip`, notebooks)
 
 > **MILESTONE** &nbsp; Nothing to ship — write a one-page **"how an LLM works"** in your own words. If you can explain tokens, embeddings and the ladder plainly, you're ready.
 
@@ -61,9 +61,9 @@ This is the "answer things" half of a copilot.
 - [x] Vector stores — `pgvector` first (reuse Postgres), then Qdrant / Pinecone; HNSW indexing, metadata filtering
 - [x] Chunking strategies — size, overlap, semantic & structural splitting
 - [x] Full RAG pipeline — ingest → embed → retrieve → ground → cite
-- [ ] Hybrid search (semantic + keyword/BM25) & re-ranking — pure vectors alone are rarely enough
-- [ ] Grounding & anti-hallucination — citations, and a graceful "I don't know"
-- [ ] RAG evaluation — did you retrieve the *right* context?
+- [x] Hybrid search (semantic + keyword/BM25) & re-ranking — pure vectors alone are rarely enough
+- [x] Grounding & anti-hallucination — citations, and a graceful "I don't know"
+- [x] RAG evaluation — did you retrieve the *right* context?
 
 > **PROJECT** &nbsp; **"Chat with your docs"** over a real corpus. Must cite sources and admit when it doesn't know. Build it raw first — *then* compare a framework.
 
@@ -73,11 +73,11 @@ This is the "answer things" half of a copilot.
 
 **The heart of a Rovo-style assistant** — the "do things in English" engine. An agent is a loop + tools + prompts: software engineering, not ML.
 
-- [ ] The agent loop — reason → act → observe → repeat (the ReAct pattern)
-- [ ] Multi-tool orchestration — the model choosing among many tools
-- [ ] Agentic patterns — planning, reflection, multi-agent — and **when NOT to use an agent**
-- [ ] MCP — host / client / server; the primitives (tools, resources, prompts); transports (stdio, HTTP)
-- [ ] Build an MCP server exposing real actions from a platform
+- [x] The agent loop — reason → act → observe → repeat (the ReAct pattern)
+- [x] Multi-tool orchestration — the model choosing among many tools
+- [x] Agentic patterns — planning, reflection, multi-agent — and **when NOT to use an agent**
+- [x] MCP — host / client / server; the primitives (tools, resources, prompts); transports (stdio, HTTP)
+- [x] Build an MCP server exposing real actions from a platform
 - [ ] Guardrails — confirm destructive actions, permission scoping, prompt-injection defense
 - [ ] Framework — **LangGraph** for stateful agents (+ LangChain / LangSmith); LlamaIndex for retrieval
 

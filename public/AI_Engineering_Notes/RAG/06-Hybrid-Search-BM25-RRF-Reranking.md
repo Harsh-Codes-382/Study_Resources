@@ -398,7 +398,7 @@ Reranker          query + chunk  → 3.7                     (one number)
 | Stage | Model | In → out | Rough size |
 |---|---|---|---|
 | index / query | embedding model | text → vector | ~100M–500M |
-| rerank | cross-encoder | (query, chunk) → score | ~110M–570M |
+| rerank | cross-encoder | (query, chunk) → score | ~20M–570M |
 | generate | **the LLM** | prompt → text | 7B–500B+ |
 
 Only the last is an LLM. That **100–1000× size gap** is exactly why the first two run on a 4GB laptop GPU and the third needs an API or a much bigger card.
@@ -435,16 +435,28 @@ scores = model.predict([(query, chunk_a), (query, chunk_b)])
 
 | | Size | Notes |
 |---|---|---|
-| **`bge-reranker-base`** | ~110M | The standard starting point. Small, fast, genuinely good. |
+| **`bge-reranker-base`** | **~278M** | The standard starting point. Small, fast, genuinely good. "Base" names the *encoder* (XLM-RoBERTa-base), not the total — see the note below the table. |
 | **`bge-reranker-v2-m3`** | ~568M | Stronger + multilingual. The common "serious self-host" pick. |
 | **`mxbai-rerank-base-v2`** | mid | Mixedbread's line; well-regarded recent alternative. |
+
+> ⚠️ **"base" describes the encoder, not the parameter count** — a trap worth remembering, because
+> the obvious guess is wrong. `bge-reranker-base` measures **278M params (~0.56GB in fp16)**, not the
+> ~110M a BERT-base prior suggests. **69% of it — 192M params — is the embedding matrix alone**, because
+> it is built on **XLM-RoBERTa-base with a 250,002-token multilingual vocabulary**: 250,002 x 768.
+> The transformer stack really is BERT-base sized (~85M); the vocabulary is what doubles the model.
+> Verified by counting `model.parameters()`, not read off a model card.
+>
+> The corollary is the useful part: it is a **multilingual** model whether or not you want one, and
+> you pay for that vocabulary in VRAM on every load. A monolingual cross-encoder of the same encoder
+> size (`cross-encoder/ms-marco-MiniLM-L-6-v2`, ~22M) is **12x smaller** — which is why the range in
+> the three-models table above starts at ~20M.
 
 **Two other shapes worth knowing:**
 
 - **ColBERT / late interaction** — **ColBERT = Contextualized Late Interaction over BERT.** A middle ground: stores a vector **per token** instead of per chunk, so *some* query-document interaction survives into the index. Faster than a cross-encoder, more accurate than a single vector, costs far more storage. `answerai-colbert-small-v1` is the approachable one.
 - **LLM-as-reranker** — hand the candidates to an actual LLM and ask it to order them. Most accurate, most expensive, slowest, and *is* prompt-injectable. Used for offline eval or generating training labels, rarely on the hot path.
 
-> ✅ **Local starting point:** `bge-reranker-base` in fp16 (~0.3GB) fits comfortably on a 4GB card, and 25 pairs on GPU lands in the tens of milliseconds. It keeps the loop fully offline, so the same queries can be re-run a hundred times while tuning α, `k` and overfetch depth without burning API calls.
+> ✅ **Local starting point:** `bge-reranker-base` in fp16 (**~0.56GB**) fits comfortably on a 4GB card, and 25 pairs on GPU lands in the tens of milliseconds. It keeps the loop fully offline, so the same queries can be re-run a hundred times while tuning α, `k` and overfetch depth without burning API calls.
 
 ---
 
@@ -572,7 +584,7 @@ Reuse the harness from note 05, §12 — same questions, same char-span gold lab
 - **RRF is magnitude-blind** — a retriever that returned pure noise still casts a full-strength rank-1 vote. Only a **score floor before fusion** fixes that. `k` and weights don't.
 - **With a reranker downstream, fusion's job is recall, not ranking** — which is exactly what licenses crude RRF. Remove the reranker and that justification disappears.
 - **A reranker beats a retriever because embeddings were computed before the query existed.** Reading the pair together is the whole advantage — and it's why the model can't be pre-indexed.
-- **A reranker is a model, not an LLM.** No vocabulary head, no generation loop, one scalar out — hence 110M params on a 4GB card. It also can't be prompt-injected by a retrieved chunk, unlike LLM-as-reranker.
+- **A reranker is a model, not an LLM.** No vocabulary head, no generation loop, one scalar out — hence ~278M params on a 4GB card, against 7B+ for the smallest useful LLM. It also can't be prompt-injected by a retrieved chunk, unlike LLM-as-reranker.
 - **Overfetch, or nothing later can help.** A chunk absent from both top-40 lists is unreachable by fusion, by the reranker, and by the LLM.
 - **Use the same deterministic chunk IDs in both indexes**, or dedup fails silently and duplicates crowd out better chunks.
 - **Hybrid's gain is query-type-dependent.** If your eval set has no identifier/code/name queries, hybrid will measure as worthless — because you never tested what it fixes.

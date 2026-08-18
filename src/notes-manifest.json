@@ -192,17 +192,31 @@
     ],
     "categories": [
       {
-        "id": "agents-and-mcp",
-        "name": "Agents and MCP",
-        "folder": "Agents and MCP",
-        "path": "/AI_Engineering_Notes/Agents%20and%20MCP",
+        "id": "ai-agent",
+        "name": "AI Agent",
+        "folder": "AI Agent",
+        "path": "/AI_Engineering_Notes/AI%20Agent",
         "notes": [
           {
-            "id": "01-agent-loop-and-multi-tool-orchestration",
-            "title": "Agent Loop and Multi Tool Orchestration",
+            "id": "01-the-agent-loop-react",
+            "title": "The Agent Loop ReAct",
             "type": "md",
-            "file": "01-Agent-Loop-and-Multi-Tool-Orchestration.md",
-            "path": "/AI_Engineering_Notes/Agents%20and%20MCP/01-Agent-Loop-and-Multi-Tool-Orchestration.md"
+            "file": "01-The-Agent-Loop-ReAct.md",
+            "path": "/AI_Engineering_Notes/AI%20Agent/01-The-Agent-Loop-ReAct.md"
+          },
+          {
+            "id": "02-multi-tool-orchestration",
+            "title": "Multi Tool Orchestration",
+            "type": "md",
+            "file": "02-Multi-Tool-Orchestration.md",
+            "path": "/AI_Engineering_Notes/AI%20Agent/02-Multi-Tool-Orchestration.md"
+          },
+          {
+            "id": "03-agentic-patterns-and-when-not-to",
+            "title": "Agentic Patterns and When Not To",
+            "type": "md",
+            "file": "03-Agentic-Patterns-and-When-Not-To.md",
+            "path": "/AI_Engineering_Notes/AI%20Agent/03-Agentic-Patterns-and-When-Not-To.md"
           }
         ],
         "categories": []
@@ -312,6 +326,22 @@
             "type": "md",
             "file": "06-Model-as-Flaky-Dependency.md",
             "path": "/AI_Engineering_Notes/LLM%20API%20and%20Prompt%20Engineering/06-Model-as-Flaky-Dependency.md"
+          }
+        ],
+        "categories": []
+      },
+      {
+        "id": "mcp",
+        "name": "MCP",
+        "folder": "MCP",
+        "path": "/AI_Engineering_Notes/MCP",
+        "notes": [
+          {
+            "id": "01-mcp-host-client-server-primitives-transports",
+            "title": "MCP Host Client Server Primitives Transports",
+            "type": "md",
+            "file": "01-MCP-Host-Client-Server-Primitives-Transports.md",
+            "path": "/AI_Engineering_Notes/MCP/01-MCP-Host-Client-Server-Primitives-Transports.md"
           }
         ],
         "categories": []
