@@ -449,6 +449,13 @@
         "type": "md",
         "file": "05-Ticket-Booking-BookMyShow.md",
         "path": "/HLD_Notes/05-Ticket-Booking-BookMyShow.md"
+      },
+      {
+        "id": "06-ott-platform-netflix",
+        "title": "OTT Platform Netflix",
+        "type": "md",
+        "file": "06-OTT-Platform-Netflix.md",
+        "path": "/HLD_Notes/06-OTT-Platform-Netflix.md"
       }
     ],
     "categories": []

@@ -48,7 +48,7 @@ export const HLD_TIERS = [
       { name: "WhatsApp" },
       { name: "TikTok" },
       { name: "YouTube" },
-      { name: "Netflix" },
+      { name: "Netflix", status: "done" },
       { name: "Spotify" },
       { name: "Shopify" },
       { name: "E-commerce (Amazon)" },
