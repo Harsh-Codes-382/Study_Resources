@@ -442,6 +442,13 @@
         "type": "md",
         "file": "04-Multi-Tenant-Auth-SSO-SAML-SCIM.md",
         "path": "/HLD_Notes/04-Multi-Tenant-Auth-SSO-SAML-SCIM.md"
+      },
+      {
+        "id": "05-ticket-booking-bookmyshow",
+        "title": "Ticket Booking BookMyShow",
+        "type": "md",
+        "file": "05-Ticket-Booking-BookMyShow.md",
+        "path": "/HLD_Notes/05-Ticket-Booking-BookMyShow.md"
       }
     ],
     "categories": []

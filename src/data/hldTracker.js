@@ -69,7 +69,7 @@ export const HLD_TIERS = [
       { name: "Distributed Web Crawler" },
       { name: "File Sharing (Dropbox)" },
       { name: "Object Storage (S3)" },
-      { name: "Ticket Booking (BookMyShow)" },
+      { name: "Ticket Booking (BookMyShow)", status: "done" },
       { name: "Location-Based Service (Yelp)" },
       { name: "Code Deployment System" },
       { name: "Food Delivery (DoorDash)" },
