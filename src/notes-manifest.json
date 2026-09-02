@@ -456,6 +456,13 @@
         "type": "md",
         "file": "06-OTT-Platform-Netflix.md",
         "path": "/HLD_Notes/06-OTT-Platform-Netflix.md"
+      },
+      {
+        "id": "07-real-time-chat-whatsapp",
+        "title": "Real Time Chat WhatsApp",
+        "type": "md",
+        "file": "07-Real-Time-Chat-WhatsApp.md",
+        "path": "/HLD_Notes/07-Real-Time-Chat-WhatsApp.md"
       }
     ],
     "categories": []
