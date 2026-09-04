@@ -73,7 +73,7 @@ export const HLD_TIERS = [
       { name: "Location-Based Service (Yelp)" },
       { name: "Code Deployment System" },
       { name: "Food Delivery (DoorDash)" },
-      { name: "Google Docs" },
+      { name: "Google Docs", status: "done", note: "08-real-time-collaborative-editor-google-docs" },
       { name: "Uber" },
       { name: "Zoom" },
       { name: "Google Maps" },

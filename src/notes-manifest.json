@@ -463,6 +463,13 @@
         "type": "md",
         "file": "07-Real-Time-Chat-WhatsApp.md",
         "path": "/HLD_Notes/07-Real-Time-Chat-WhatsApp.md"
+      },
+      {
+        "id": "08-real-time-collaborative-editor-google-docs",
+        "title": "Real Time Collaborative Editor Google Docs",
+        "type": "md",
+        "file": "08-Real-Time-Collaborative-Editor-Google-Docs.md",
+        "path": "/HLD_Notes/08-Real-Time-Collaborative-Editor-Google-Docs.md"
       }
     ],
     "categories": []
