@@ -57,7 +57,7 @@ export const HLD_TIERS = [
       { name: "Flight Booking System" },
       { name: "Distributed Message Queue (Kafka)" },
       { name: "Analytics Platform (Logging, Metrics)" },
-      { name: "Stock Exchange System" },
+      { name: "Stock Trading Platform (Zerodha)", status: "done", note: "09-stock-trading-platform-zerodha" },
     ],
   },
   {

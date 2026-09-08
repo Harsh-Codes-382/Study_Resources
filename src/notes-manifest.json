@@ -470,6 +470,13 @@
         "type": "md",
         "file": "08-Real-Time-Collaborative-Editor-Google-Docs.md",
         "path": "/HLD_Notes/08-Real-Time-Collaborative-Editor-Google-Docs.md"
+      },
+      {
+        "id": "09-stock-trading-platform-zerodha",
+        "title": "Stock Trading Platform Zerodha",
+        "type": "md",
+        "file": "09-Stock-Trading-Platform-Zerodha.md",
+        "path": "/HLD_Notes/09-Stock-Trading-Platform-Zerodha.md"
       }
     ],
     "categories": []
