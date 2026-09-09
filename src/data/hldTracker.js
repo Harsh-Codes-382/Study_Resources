@@ -74,7 +74,7 @@ export const HLD_TIERS = [
       { name: "Code Deployment System" },
       { name: "Food Delivery (DoorDash)" },
       { name: "Google Docs", status: "done", note: "08-real-time-collaborative-editor-google-docs" },
-      { name: "Uber" },
+      { name: "Uber", status: "done", note: "10-ride-sharing-uber-ola" },
       { name: "Zoom" },
       { name: "Google Maps" },
     ],

@@ -6,6 +6,20 @@
 
 ---
 
+## My whiteboard
+
+Requirements, entities and API:
+
+![Stock trading — functional & non-functional requirements, CAP split (consistency ≫ availability for orders, high availability for viewing prices), core entities (User, Stock, Order, Trade, Portfolio, Watchlist) and API design](HLD_Notes_Images/stock-trading-requirements-api.png)
+
+High-level architecture:
+
+![Stock trading architecture — LB/API gateway + WebSocket gateway, User/Payment/Watchlist services, Price Tracker (WS fan-out) + Price Ingester → InfluxDB + Redis Pub/Sub, Order Svc → Validator → Exchange Gateway → NSE/BSE, Order Tracker → Trade DB + Positions, all wired through Kafka topics stock_price/order_status](HLD_Notes_Images/stock-trading-architecture.png)
+
+The rest of this note is the cleaned-up version + the gotchas that separate a first-pass design from a defensible one.
+
+---
+
 ## 1 · Requirements
 
 **Functional**

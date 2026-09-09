@@ -6,6 +6,20 @@
 
 ---
 
+## My whiteboard
+
+Requirements, entities and API:
+
+![Google Docs — functional & non-functional requirements (availability > consistency for normal docs, ~100ms latency), core entities (User/Editor, Documents, Edit, Cursor) and API design (REST create/view + WS edit)](HLD_Notes_Images/google-docs-requirements-api.png)
+
+High-level architecture:
+
+![Google Docs architecture — LB/API gateway + WebSocket LB/gateway, Document Metadata Svc → Kafka → Cassandra, Document Editor Svc running OT with Redis canonical copy + snapshot/versioning to S3, Operation Consumer → op-log DB, Reconciliation/Replay Svc, VersionDB, CDN](HLD_Notes_Images/google-docs-architecture.png)
+
+The rest of this note is the cleaned-up version + the gotchas that separate a first-pass design from a defensible one.
+
+---
+
 ## 1 · Requirements
 
 **Functional**

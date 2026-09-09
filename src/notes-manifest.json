@@ -477,6 +477,13 @@
         "type": "md",
         "file": "09-Stock-Trading-Platform-Zerodha.md",
         "path": "/HLD_Notes/09-Stock-Trading-Platform-Zerodha.md"
+      },
+      {
+        "id": "10-ride-sharing-uber-ola",
+        "title": "Ride Sharing Uber Ola",
+        "type": "md",
+        "file": "10-Ride-Sharing-Uber-Ola.md",
+        "path": "/HLD_Notes/10-Ride-Sharing-Uber-Ola.md"
       }
     ],
     "categories": []
