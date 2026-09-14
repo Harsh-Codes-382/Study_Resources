@@ -7,7 +7,7 @@
 // "rag" subcategory under "llm". Subcategories inherit their parent's accent
 // (and a Folder icon) unless you give them their own META entry.
 
-import { Cloud, Cpu, Network, Blocks, Database, Folder } from "lucide-react";
+import { Cloud, Cpu, Network, Blocks, Database, Folder, Lock, Coffee, Leaf } from "lucide-react";
 import generated from "../notes-manifest.json";
 
 const META = {
@@ -45,6 +45,24 @@ const META = {
     icon: Database,
     accent: "#f472b6",
     blurb: "Schemas, ER, SQL, transactions, indexing & scaling",
+  },
+  "interview-prep": {
+    icon: Lock,
+    accent: "#f5a524",
+    blurb: "Password-protected — personal interview prep",
+  },
+  // These render as subcategories of Interview Prep because of the FOLDER
+  // nesting under public/Interview_Prep_Notes/ (see notes-manifest.json) — not
+  // because they're listed here. META is a flat id->style lookup; placement in
+  // this object is irrelevant. With no `accent` key they inherit the parent's
+  // amber (decorate() passes it down); only the icon + blurb are customised.
+  "core-java": {
+    icon: Coffee,
+    blurb: "JVM, language mechanics, collections & concurrency",
+  },
+  "spring-boot": {
+    icon: Leaf,
+    blurb: "Spring Boot essentials — notes coming soon",
   },
 };
 

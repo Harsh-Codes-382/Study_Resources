@@ -711,6 +711,131 @@
     "categories": []
   },
   {
+    "id": "interview-prep",
+    "name": "Interview Prep",
+    "folder": "Interview_Prep_Notes",
+    "path": "/Interview_Prep_Notes",
+    "notes": [],
+    "categories": [
+      {
+        "id": "core-java",
+        "name": "Core Java",
+        "folder": "Core Java",
+        "path": "/Interview_Prep_Notes/Core%20Java",
+        "notes": [
+          {
+            "id": "corejava-1-1-jvm",
+            "title": "CoreJava 1.1 JVM",
+            "type": "md",
+            "file": "CoreJava_1.1_JVM.md",
+            "path": "/Interview_Prep_Notes/Core%20Java/CoreJava_1.1_JVM.md"
+          },
+          {
+            "id": "corejava-1-11-modern-java-8-to-21",
+            "title": "CoreJava 1.11 Modern Java 8 to 21",
+            "type": "md",
+            "file": "CoreJava_1.11_Modern_Java_8_to_21.md",
+            "path": "/Interview_Prep_Notes/Core%20Java/CoreJava_1.11_Modern_Java_8_to_21.md"
+          },
+          {
+            "id": "corejava-1-2-language-mechanics",
+            "title": "CoreJava 1.2 Language Mechanics",
+            "type": "md",
+            "file": "CoreJava_1.2_Language_Mechanics.md",
+            "path": "/Interview_Prep_Notes/Core%20Java/CoreJava_1.2_Language_Mechanics.md"
+          },
+          {
+            "id": "corejava-1-3-constructors",
+            "title": "CoreJava 1.3 Constructors",
+            "type": "md",
+            "file": "CoreJava_1.3_Constructors.md",
+            "path": "/Interview_Prep_Notes/Core%20Java/CoreJava_1.3_Constructors.md"
+          },
+          {
+            "id": "corejava-1-4-equality-hashing-strings",
+            "title": "CoreJava 1.4 Equality Hashing Strings",
+            "type": "md",
+            "file": "CoreJava_1.4_Equality_Hashing_Strings.md",
+            "path": "/Interview_Prep_Notes/Core%20Java/CoreJava_1.4_Equality_Hashing_Strings.md"
+          },
+          {
+            "id": "corejava-1-5-exceptions",
+            "title": "CoreJava 1.5 Exceptions",
+            "type": "md",
+            "file": "CoreJava_1.5_Exceptions.md",
+            "path": "/Interview_Prep_Notes/Core%20Java/CoreJava_1.5_Exceptions.md"
+          },
+          {
+            "id": "corejava-1-6-enums-serialization-copying",
+            "title": "CoreJava 1.6 Enums Serialization Copying",
+            "type": "md",
+            "file": "CoreJava_1.6_Enums_Serialization_Copying.md",
+            "path": "/Interview_Prep_Notes/Core%20Java/CoreJava_1.6_Enums_Serialization_Copying.md"
+          },
+          {
+            "id": "corejava-1-7-generics-streams-functional-java",
+            "title": "CoreJava 1.7 Generics Streams Functional Java",
+            "type": "md",
+            "file": "CoreJava_1.7_Generics_Streams_Functional_Java.md",
+            "path": "/Interview_Prep_Notes/Core%20Java/CoreJava_1.7_Generics_Streams_Functional_Java.md"
+          },
+          {
+            "id": "corejava-1-8-collections-map-internals",
+            "title": "CoreJava 1.8 Collections Map Internals",
+            "type": "md",
+            "file": "CoreJava_1.8_Collections_Map_Internals.md",
+            "path": "/Interview_Prep_Notes/Core%20Java/CoreJava_1.8_Collections_Map_Internals.md"
+          },
+          {
+            "id": "corejava-1-9-collection-list-set-queue",
+            "title": "CoreJava 1.9 Collection List Set Queue",
+            "type": "md",
+            "file": "CoreJava_1.9_Collection_List_Set_Queue.md",
+            "path": "/Interview_Prep_Notes/Core%20Java/CoreJava_1.9_Collection_List_Set_Queue.md"
+          },
+          {
+            "id": "corejava-2-1-threads-pools-async",
+            "title": "CoreJava 2.1 Threads Pools Async",
+            "type": "md",
+            "file": "CoreJava_2.1_Threads_Pools_Async.md",
+            "path": "/Interview_Prep_Notes/Core%20Java/CoreJava_2.1_Threads_Pools_Async.md"
+          },
+          {
+            "id": "corejava-2-2-synchronization-locks-the-memory-model",
+            "title": "CoreJava 2.2 Synchronization, locks & the memory model",
+            "type": "md",
+            "file": "CoreJava_2.2 Synchronization, locks & the memory model.md",
+            "path": "/Interview_Prep_Notes/Core%20Java/CoreJava_2.2%20Synchronization%2C%20locks%20%26%20the%20memory%20model.md"
+          },
+          {
+            "id": "corejava-2-3-hazards-coordination-thread-safe-design",
+            "title": "CoreJava 2.3 Hazards, Coordination & Thread Safe Design",
+            "type": "md",
+            "file": "CoreJava_2.3 Hazards, Coordination & Thread-Safe Design.md",
+            "path": "/Interview_Prep_Notes/Core%20Java/CoreJava_2.3%20Hazards%2C%20Coordination%20%26%20Thread-Safe%20Design.md"
+          }
+        ],
+        "categories": []
+      },
+      {
+        "id": "spring-boot",
+        "name": "Spring Boot",
+        "folder": "Spring Boot",
+        "path": "/Interview_Prep_Notes/Spring%20Boot",
+        "notes": [
+          {
+            "id": "00-coming-soon",
+            "title": "Coming Soon",
+            "type": "md",
+            "file": "00_Coming_Soon.md",
+            "path": "/Interview_Prep_Notes/Spring%20Boot/00_Coming_Soon.md"
+          }
+        ],
+        "categories": []
+      }
+    ]
+  },
+  {
     "id": "os",
     "name": "OS",
     "folder": "OS_Notes",

@@ -48,6 +48,60 @@ body { display: block; place-items: normal; }
   transition:border-color .16s, transform .16s; }
 .nb-card:hover{ border-color:var(--ac); transform:translateY(-2px); }
 .nb-card-bar{ position:absolute; inset:0 auto 0 0; width:3px; background:var(--ac); opacity:.9; }
+
+/* ── Interview Prep: its own "private" section, set apart from the grid ── */
+.nb-ip-section{ margin-top:72px; }
+@media (max-width:600px){ .nb-ip-section{ margin-top:52px; } }
+
+/* labeled divider */
+.nb-ip-divider{ display:flex; align-items:center; gap:12px; margin-bottom:14px;
+  color:var(--faint); }
+.nb-ip-divider::before, .nb-ip-divider::after{ content:""; flex:1; height:1px;
+  background:linear-gradient(90deg,transparent,var(--border),transparent); }
+.nb-ip-divider span{ font-family:var(--mono); font-size:10.5px; letter-spacing:.22em;
+  text-transform:uppercase; color:color-mix(in srgb,var(--ac) 70%,var(--faint)); }
+
+/* full-width private panel */
+.nb-ip-card{ position:relative; width:100%; display:flex; align-items:center; gap:18px;
+  text-align:left; cursor:pointer; overflow:hidden; font:inherit; color:inherit;
+  padding:20px 22px; border-radius:16px;
+  border:1px solid color-mix(in srgb,var(--ac) 34%,var(--border));
+  background:
+    radial-gradient(120% 140% at 0% 0%, color-mix(in srgb,var(--ac) 13%,transparent), transparent 60%),
+    linear-gradient(180deg, var(--surface-2), var(--surface));
+  box-shadow:0 1px 0 color-mix(in srgb,var(--ac) 12%,transparent) inset;
+  transition:border-color .16s, transform .16s, box-shadow .16s; }
+.nb-ip-card:hover{ border-color:var(--ac); transform:translateY(-2px);
+  box-shadow:0 10px 30px -14px color-mix(in srgb,var(--ac) 60%,transparent); }
+/* accent rail on the left edge */
+.nb-ip-card::before{ content:""; position:absolute; inset:0 auto 0 0; width:3px;
+  background:var(--ac); }
+
+.nb-ip-icon{ flex:none; width:52px; height:52px; border-radius:14px; display:grid;
+  place-items:center; color:var(--ac);
+  background:color-mix(in srgb,var(--ac) 15%,transparent);
+  border:1px solid color-mix(in srgb,var(--ac) 36%,transparent); }
+
+.nb-ip-body{ flex:1; min-width:0; display:flex; flex-direction:column; gap:5px; }
+.nb-ip-titlerow{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.nb-ip-name{ font-size:20px; font-weight:660; letter-spacing:-.01em; }
+.nb-ip-tag{ display:inline-flex; align-items:center; gap:4px; font-family:var(--mono);
+  font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--ac);
+  padding:3px 8px; border-radius:999px;
+  background:color-mix(in srgb,var(--ac) 12%,transparent);
+  border:1px solid color-mix(in srgb,var(--ac) 30%,transparent); }
+.nb-ip-blurb{ color:var(--muted); font-size:12.5px; line-height:1.45; }
+
+.nb-ip-action{ flex:none; display:inline-flex; align-items:center; gap:6px;
+  font-family:var(--sans); font-size:13.5px; font-weight:620; color:#0b0f14;
+  background:var(--ac); border:1px solid var(--ac); padding:9px 15px; border-radius:10px;
+  transition:filter .15s; }
+.nb-ip-card:hover .nb-ip-action{ filter:brightness(1.08); }
+
+@media (max-width:600px){
+  .nb-ip-card{ flex-direction:column; align-items:flex-start; gap:14px; }
+  .nb-ip-action{ width:100%; justify-content:center; }
+}
 .nb-card-icon{ width:42px; height:42px; border-radius:11px; display:grid; place-items:center;
   color:var(--ac); background:color-mix(in srgb,var(--ac) 14%,transparent);
   border:1px solid color-mix(in srgb,var(--ac) 34%,transparent); }
@@ -206,6 +260,39 @@ body { display: block; place-items: normal; }
   vertical-align:top; }
 .nb-md th{ background:var(--surface-2); color:#fff; font-weight:600; }
 .nb-md tbody tr:nth-child(even) td{ background:rgba(255,255,255,0.015); }
+
+/* password gate (protected shelf) */
+.nb-gate-overlay{ position:fixed; inset:0; z-index:1000; display:flex;
+  align-items:center; justify-content:center; padding:1.25rem;
+  background:rgba(6,9,13,.82); backdrop-filter:blur(4px);
+  animation:nb-dlb-fade .14s ease-out; }
+.nb-gate{ position:relative; width:100%; max-width:380px; text-align:center;
+  background:var(--surface); border:1px solid var(--border); border-radius:16px;
+  padding:30px 26px 26px; box-shadow:0 24px 60px rgba(0,0,0,.45); }
+.nb-gate-close{ position:absolute; top:12px; right:12px; display:grid; place-items:center;
+  width:30px; height:30px; color:var(--muted); background:none; border:1px solid var(--border);
+  border-radius:8px; cursor:pointer; transition:color .15s, border-color .15s; }
+.nb-gate-close:hover{ color:var(--ac); border-color:var(--ac); }
+.nb-gate-icon{ display:inline-grid; place-items:center; width:52px; height:52px; margin-bottom:14px;
+  border-radius:14px; color:var(--ac);
+  background:color-mix(in srgb,var(--ac) 14%,transparent);
+  border:1px solid color-mix(in srgb,var(--ac) 34%,transparent); }
+.nb-gate-title{ margin:0 0 6px; font-size:20px; font-weight:660; letter-spacing:-.01em; }
+.nb-gate-sub{ margin:0 0 20px; color:var(--muted); font-size:13px; line-height:1.5; }
+.nb-gate-form{ display:flex; flex-direction:column; gap:10px; }
+.nb-gate-input{ width:100%; background:var(--surface-2); border:1px solid var(--border);
+  border-radius:9px; padding:11px 13px; color:var(--text); font-family:var(--mono); font-size:14px;
+  outline:none; transition:border-color .15s; }
+.nb-gate-input:focus{ border-color:var(--ac); }
+.nb-gate-input[aria-invalid="true"]{ border-color:#f2708a; }
+.nb-gate-btn{ width:100%; padding:11px 14px; border:1px solid var(--ac); border-radius:9px;
+  color:#0b0f14; background:var(--ac); font-family:var(--sans); font-size:14px; font-weight:640;
+  cursor:pointer; transition:filter .15s; }
+.nb-gate-btn:hover{ filter:brightness(1.08); }
+.nb-gate-error{ margin:14px 0 0; color:#f2708a; font-family:var(--mono); font-size:12px; }
+.nb-gate-warn{ margin:0; color:var(--muted); font-size:12.5px; line-height:1.55; text-align:left;
+  background:var(--surface-2); border:1px solid var(--border-soft); border-radius:9px; padding:12px 14px; }
+.nb-gate-warn code{ font-family:var(--mono); font-size:.9em; color:var(--text); }
 
 .nb-foot{ margin-top:auto; padding-top:40px; font-family:var(--mono); font-size:11.5px;
   color:var(--faint); }
