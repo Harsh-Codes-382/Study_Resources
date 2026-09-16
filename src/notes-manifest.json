@@ -484,6 +484,13 @@
         "type": "md",
         "file": "10-Ride-Sharing-Uber-Ola.md",
         "path": "/HLD_Notes/10-Ride-Sharing-Uber-Ola.md"
+      },
+      {
+        "id": "11-news-feed-generation-facebook-instagram",
+        "title": "News Feed Generation Facebook Instagram",
+        "type": "md",
+        "file": "11-News-Feed-Generation-Facebook-Instagram.md",
+        "path": "/HLD_Notes/11-News-Feed-Generation-Facebook-Instagram.md"
       }
     ],
     "categories": []

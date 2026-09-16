@@ -44,7 +44,7 @@ export const HLD_TIERS = [
       { name: "Reddit" },
       { name: "Instagram" },
       { name: "Tinder" },
-      { name: "Facebook" },
+      { name: "Facebook", status: "done", note: "11-news-feed-generation-facebook-instagram" },
       { name: "WhatsApp", status: "done", note: "07-real-time-chat-whatsapp" },
       { name: "TikTok" },
       { name: "YouTube" },
