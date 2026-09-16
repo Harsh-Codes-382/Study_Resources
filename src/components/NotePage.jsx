@@ -30,7 +30,7 @@ export default function NotePage({ category, note }) {
   // effect (which React 19 flags as a cascading-render smell).
   const [renderedPath, setRenderedPath] = useState(null);
   const [errorPath, setErrorPath] = useState(null);
-  const [zoomSvg, setZoomSvg] = useState(null); // markup of the diagram being viewed
+  const [zoomContent, setZoomContent] = useState(null); // markup of the diagram/image being viewed
   const mdRef = useRef(null);
 
   useEffect(() => {
@@ -82,7 +82,7 @@ export default function NotePage({ category, note }) {
             // with the inline diagram's id (mermaid scopes its <style> by that id).
             let markup = svg.outerHTML;
             if (svg.id) markup = markup.split(svg.id).join(`${svg.id}-zoom`);
-            setZoomSvg(markup);
+            setZoomContent(markup);
           };
         });
       });
@@ -90,6 +90,23 @@ export default function NotePage({ category, note }) {
     return () => {
       alive = false;
     };
+  }, [html]);
+
+  // Make note images open the same zoom/pan lightbox on click.
+  useEffect(() => {
+    if (!html || !mdRef.current) return;
+    mdRef.current.querySelectorAll("img").forEach((img) => {
+      img.classList.add("nb-zoomable");
+      img.onclick = () => {
+        // clone (attributes only) so the modal copy carries no page-only
+        // class / lazy-loading / sizing styles into the lightbox
+        const clone = img.cloneNode();
+        clone.className = "";
+        clone.removeAttribute("loading");
+        clone.removeAttribute("style");
+        setZoomContent(clone.outerHTML);
+      };
+    });
   }, [html]);
 
   if (!category || !note) {
@@ -139,8 +156,8 @@ export default function NotePage({ category, note }) {
         )}
       </div>
 
-      {zoomSvg && (
-        <DiagramLightbox svg={zoomSvg} onClose={() => setZoomSvg(null)} />
+      {zoomContent && (
+        <DiagramLightbox content={zoomContent} onClose={() => setZoomContent(null)} />
       )}
     </Layout>
   );

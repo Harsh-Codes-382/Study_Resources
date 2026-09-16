@@ -1,12 +1,13 @@
 // src/components/DiagramLightbox.jsx
 //
-// A zoom/pan popup for rendered Mermaid diagrams. NotePage hands us the
-// already-rendered <svg> markup (as a string) of the clicked diagram; we drop
-// it into a full-screen portal modal and let the user wheel-zoom (anchored at
-// the cursor), drag to pan, and use the toolbar / keyboard to zoom & reset.
+// A zoom/pan popup for rendered Mermaid diagrams and note images. NotePage
+// hands us the markup (as a string) of the clicked element — an already-rendered
+// <svg> or an <img> — and we drop it into a full-screen portal modal and let the
+// user wheel-zoom (anchored at the cursor), drag to pan, and use the toolbar /
+// keyboard to zoom & reset.
 //
-// Transform math uses transform-origin 0 0 on the content wrapper, so the svg
-// is forced to its intrinsic viewBox pixel size on open (its inline
+// Transform math uses transform-origin 0 0 on the content wrapper, so the
+// content is forced to its intrinsic pixel size on open (its inline
 // max-width:100% would otherwise make scale() relative to the stage width).
 
 import { useCallback, useEffect, useLayoutEffect, useRef } from "react";
@@ -17,7 +18,7 @@ const MIN = 0.2;
 const MAX = 8;
 const clamp = (v) => Math.min(MAX, Math.max(MIN, v));
 
-export default function DiagramLightbox({ svg, onClose }) {
+export default function DiagramLightbox({ content, onClose }) {
   const stageRef = useRef(null);
   const contentRef = useRef(null);
   const tf = useRef({ x: 0, y: 0, k: 1 }); // live transform (kept off React state for smooth drags)
@@ -30,19 +31,27 @@ export default function DiagramLightbox({ svg, onClose }) {
       contentRef.current.style.transform = `translate(${x}px, ${y}px) scale(${k})`;
   }, []);
 
-  // Center the diagram in the stage at a "fit" zoom (also the reset target).
+  // Center the content in the stage at a "fit" zoom (also the reset target).
   const fit = useCallback(() => {
     const stage = stageRef.current;
-    const svgEl = contentRef.current?.querySelector("svg");
-    if (!stage || !svgEl) return;
+    const el = contentRef.current?.querySelector("svg, img");
+    if (!stage || !el) return;
     const r = stage.getBoundingClientRect();
-    const vb = svgEl.viewBox?.baseVal;
-    const sw = vb && vb.width ? vb.width : svgEl.clientWidth || r.width;
-    const sh = vb && vb.height ? vb.height : svgEl.clientHeight || r.height;
-    // pin the svg to its intrinsic px size so scale() math is exact
-    svgEl.style.maxWidth = "none";
-    svgEl.style.width = `${sw}px`;
-    svgEl.style.height = `${sh}px`;
+    let sw, sh;
+    if (el.tagName.toLowerCase() === "img") {
+      // an <img> reports its intrinsic size via naturalWidth/Height (0 until it
+      // has decoded — the load listener in the mount effect refits when ready)
+      sw = el.naturalWidth || el.clientWidth || r.width;
+      sh = el.naturalHeight || el.clientHeight || r.height;
+    } else {
+      const vb = el.viewBox?.baseVal;
+      sw = vb && vb.width ? vb.width : el.clientWidth || r.width;
+      sh = vb && vb.height ? vb.height : el.clientHeight || r.height;
+    }
+    // pin the content to its intrinsic px size so scale() math is exact
+    el.style.maxWidth = "none";
+    el.style.width = `${sw}px`;
+    el.style.height = `${sh}px`;
     const k = clamp(Math.min(r.width / sw, r.height / sh) * 0.92);
     tf.current = { k, x: (r.width - sw * k) / 2, y: (r.height - sh * k) / 2 };
     apply();
@@ -77,9 +86,14 @@ export default function DiagramLightbox({ svg, onClose }) {
   useLayoutEffect(() => {
     const id = requestAnimationFrame(fit);
     window.addEventListener("resize", fit);
+    // An <img> may still be decoding when the modal opens (naturalWidth 0);
+    // refit once it has loaded so it lands centered at the right zoom.
+    const img = contentRef.current?.querySelector("img");
+    if (img && !img.complete) img.addEventListener("load", fit);
     return () => {
       cancelAnimationFrame(id);
       window.removeEventListener("resize", fit);
+      img?.removeEventListener("load", fit);
     };
   }, [fit]);
 
@@ -194,7 +208,7 @@ export default function DiagramLightbox({ svg, onClose }) {
       className="nb-dlb-overlay"
       role="dialog"
       aria-modal="true"
-      aria-label="Diagram viewer"
+      aria-label="Image viewer"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -225,7 +239,7 @@ export default function DiagramLightbox({ svg, onClose }) {
         <div
           ref={contentRef}
           className="nb-dlb-content"
-          dangerouslySetInnerHTML={{ __html: svg }}
+          dangerouslySetInnerHTML={{ __html: content }}
         />
       </div>
 
