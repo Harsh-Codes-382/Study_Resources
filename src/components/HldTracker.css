@@ -1,8 +1,9 @@
 /* src/components/HldTracker.css
    Reuses the site theme variables from .nb-root and adds the three status
    tokens the tracker needs. Imported by HldTracker.jsx, which App.jsx loads
-   statically — so these styles (including the .trk-cta card used on the HLD
-   category page) are available app-wide. */
+   LAZILY — so these styles ship in the tracker's own chunk and are present
+   only on the tracker page. Anything the category page needs (the .trk-cta
+   card) must live in App.css instead, not here. */
 
 .nb-root { --doing:#f0a63c; --done:#4ade80; --accent-dim:#2b7f95; }
 
@@ -83,17 +84,9 @@
   white-space:nowrap; transition:all .15s; }
 .trk-note-link:hover{ background:rgba(69,196,230,.16); }
 
-/* the tracker card shown on the HLD category page */
-.trk-cta{ display:flex; align-items:center; justify-content:space-between; gap:14px;
-  flex-wrap:wrap; border:1px solid var(--accent-dim); background:rgba(69,196,230,.06);
-  border-radius:11px; padding:14px 16px; margin-bottom:16px; text-decoration:none;
-  color:inherit; transition:background .15s; }
-.trk-cta:hover{ background:rgba(69,196,230,.12); }
-.trk-cta-l{ display:flex; flex-direction:column; gap:3px; }
-.trk-cta-title{ font-weight:600; font-size:14.5px; }
-.trk-cta-sub{ font-family:var(--mono); font-size:11.5px; color:var(--muted); }
-.trk-cta-go{ font-family:var(--mono); font-size:12px; color:var(--accent);
-  display:inline-flex; align-items:center; gap:5px; white-space:nowrap; }
+/* The .trk-cta card shown on the category page lives in App.css (the always-
+   loaded bundle), not here — this file is a lazy chunk and would leave the card
+   unstyled until the tracker page had been visited. */
 
 @media (max-width:560px){
   .trk-legend{ width:100%; margin-left:0; }

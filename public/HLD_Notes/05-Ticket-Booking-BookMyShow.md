@@ -79,8 +79,8 @@ flowchart LR
     B -->|BookingConfirmed event| K
     K --> N[Notification · Ticket/QR · Analytics]
 
-    classDef ap fill:#e6f5e6,stroke:#2f8f2f;
-    classDef cp fill:#fde8e8,stroke:#c0392b;
+    classDef ap fill:#e6f5e6,stroke:#2f8f2f,color:#1a1a1a;
+    classDef cp fill:#fde8e8,stroke:#c0392b,color:#1a1a1a;
     class S,E,ES,CAS ap;
     class B,SQL cp;
 ```

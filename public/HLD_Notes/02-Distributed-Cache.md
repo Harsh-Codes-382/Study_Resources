@@ -101,7 +101,7 @@ flowchart TD
 
     MA -->|4: on cache MISS| DB[(Database<br/>source of truth)]
 
-    classDef ctrl fill:#fff3cd,stroke:#d39e00;
+    classDef ctrl fill:#fff3cd,stroke:#d39e00,color:#1a1a1a;
     class CFG ctrl;
 ```
 
