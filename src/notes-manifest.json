@@ -843,6 +843,55 @@
             "type": "md",
             "file": "00_Coming_Soon.md",
             "path": "/Interview_Prep_Notes/Spring%20Boot/00_Coming_Soon.md"
+          },
+          {
+            "id": "3-1-ioc-di",
+            "title": "1 IoC DI",
+            "type": "md",
+            "file": "3.1_IoC_DI.md",
+            "path": "/Interview_Prep_Notes/Spring%20Boot/3.1_IoC_DI.md"
+          },
+          {
+            "id": "3-2-bean-lifecycle-and-autoconfiguration",
+            "title": "2 Bean Lifecycle and Autoconfiguration",
+            "type": "md",
+            "file": "3.2_Bean_Lifecycle_and_Autoconfiguration.md",
+            "path": "/Interview_Prep_Notes/Spring%20Boot/3.2_Bean_Lifecycle_and_Autoconfiguration.md"
+          },
+          {
+            "id": "3-3-aop-aspect-oriented-programming",
+            "title": "3 AOP Aspect Oriented Programming",
+            "type": "md",
+            "file": "3.3_AOP_Aspect_Oriented_Programming.md",
+            "path": "/Interview_Prep_Notes/Spring%20Boot/3.3_AOP_Aspect_Oriented_Programming.md"
+          },
+          {
+            "id": "3-4-config-profiles-actuator",
+            "title": "4 Config Profiles Actuator",
+            "type": "md",
+            "file": "3.4_Config_Profiles_Actuator.md",
+            "path": "/Interview_Prep_Notes/Spring%20Boot/3.4_Config_Profiles_Actuator.md"
+          },
+          {
+            "id": "3-5-transactions",
+            "title": "5 Transactions",
+            "type": "md",
+            "file": "3.5_Transactions.md",
+            "path": "/Interview_Prep_Notes/Spring%20Boot/3.5_Transactions.md"
+          },
+          {
+            "id": "3-6-spring-data-jpa-the-n-1-problem",
+            "title": "6 Spring Data JPA the N 1 problem",
+            "type": "md",
+            "file": "3.6_Spring_Data_JPA_the_N_1_problem.md",
+            "path": "/Interview_Prep_Notes/Spring%20Boot/3.6_Spring_Data_JPA_the_N_1_problem.md"
+          },
+          {
+            "id": "3-7-web-mvc-rest-layer",
+            "title": "7 Web MVC REST layer",
+            "type": "md",
+            "file": "3.7_Web_MVC_REST_layer.md",
+            "path": "/Interview_Prep_Notes/Spring%20Boot/3.7_Web_MVC_REST_layer.md"
           }
         ],
         "categories": []
