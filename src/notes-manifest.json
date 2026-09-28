@@ -838,11 +838,11 @@
         "path": "/Interview_Prep_Notes/Spring%20Boot",
         "notes": [
           {
-            "id": "00-coming-soon",
-            "title": "Coming Soon",
+            "id": "3-0-spring-boot-startup-flow-and-annotations",
+            "title": "0 spring boot startup flow and annotations",
             "type": "md",
-            "file": "00_Coming_Soon.md",
-            "path": "/Interview_Prep_Notes/Spring%20Boot/00_Coming_Soon.md"
+            "file": "3.0_spring-boot-startup-flow-and-annotations.md",
+            "path": "/Interview_Prep_Notes/Spring%20Boot/3.0_spring-boot-startup-flow-and-annotations.md"
           },
           {
             "id": "3-1-ioc-di",
@@ -892,6 +892,13 @@
             "type": "md",
             "file": "3.7_Web_MVC_REST_layer.md",
             "path": "/Interview_Prep_Notes/Spring%20Boot/3.7_Web_MVC_REST_layer.md"
+          },
+          {
+            "id": "3-8-spring-security-jwt-interview-notes",
+            "title": "8 Spring Security JWT Interview Notes",
+            "type": "md",
+            "file": "3.8_Spring_Security_JWT_Interview_Notes.md",
+            "path": "/Interview_Prep_Notes/Spring%20Boot/3.8_Spring_Security_JWT_Interview_Notes.md"
           }
         ],
         "categories": []
