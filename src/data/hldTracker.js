@@ -37,7 +37,7 @@ export const HLD_TIERS = [
     blurb: "Real products · read/write scale, feeds, storage & consistency tradeoffs",
     topics: [
       { name: "Rate Limiter" },
-      { name: "Notification Service" },
+      { name: "Notification Service", status: "done", note: "13-notification-service" },
       { name: "Autocomplete for Search" },
       { name: "Online Code Editor" },
       { name: "Twitter" },

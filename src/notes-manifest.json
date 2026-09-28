@@ -498,6 +498,13 @@
         "type": "md",
         "file": "12-Top-K-Leaderboard.md",
         "path": "/HLD_Notes/12-Top-K-Leaderboard.md"
+      },
+      {
+        "id": "13-notification-service",
+        "title": "Notification Service",
+        "type": "md",
+        "file": "13-Notification-Service.md",
+        "path": "/HLD_Notes/13-Notification-Service.md"
       }
     ],
     "categories": []
