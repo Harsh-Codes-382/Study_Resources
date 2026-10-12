@@ -1,10 +1,12 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Search, FileText, Folder, ChevronRight, ListChecks } from "lucide-react";
+import { ArrowLeft, Search, FileText, Folder, ChevronRight, ListChecks, Sheet } from "lucide-react";
 import Layout from "./Layout";
 import { badgeLabel, badgeClass, countNotes } from "../data/categories";
 import { hldProgress } from "../data/hldTracker";
 import { lldProgress } from "../data/lldTracker";
+import { SHEETS, SHEETS_SLUG } from "../data/interviewSheets";
+import { PROTECTED_SHELF_ID } from "../lib/interviewGate";
 
 // Category id -> its roadmap tracker. Add an entry to surface a tracker CTA.
 const TRACKERS = {
@@ -43,6 +45,8 @@ export default function CategoryPage({ category }) {
   const tracker = TRACKERS[category.id];
   const p = tracker ? tracker.progress() : null;
   const isRoot = category.idTrail.length === 1;
+  // Excel/Sheets links CTA — only on the Interview Prep shelf root.
+  const showSheets = category.id === PROTECTED_SHELF_ID;
 
   return (
     <Layout>
@@ -73,6 +77,21 @@ export default function CategoryPage({ category }) {
               </span>
             </span>
             <span className="trk-cta-go">Open tracker →</span>
+          </Link>
+        )}
+
+        {showSheets && (
+          <Link className="trk-cta sheets" to={`${category.url}/${SHEETS_SLUG}`}>
+            <span className="trk-cta-l">
+              <span className="trk-cta-title">
+                <Sheet size={15} style={{ verticalAlign: "-2px", marginRight: 6 }} />
+                Excel Sheets
+              </span>
+              <span className="trk-cta-sub">
+                {SHEETS.length} sheet{SHEETS.length !== 1 ? "s" : ""} — quick links to my spreadsheets
+              </span>
+            </span>
+            <span className="trk-cta-go">Open sheets →</span>
           </Link>
         )}
 

@@ -5,9 +5,11 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { findCategoryByPath, findNoteByPath } from "../data/categories";
-import { isProtectedPath, isUnlocked } from "../lib/interviewGate";
+import { isProtectedPath, isUnlocked, PROTECTED_SHELF_ID } from "../lib/interviewGate";
+import { SHEETS_SLUG } from "../data/interviewSheets";
 import CategoryPage from "./CategoryPage";
 import NotePage from "./NotePage";
+import ExcelLinks from "./ExcelLinks";
 import Layout from "./Layout";
 import PasswordGate from "./PasswordGate";
 
@@ -34,6 +36,12 @@ export default function ShelfRoute() {
         />
       </Layout>
     );
+  }
+
+  // Reserved sub-view: /interview-prep/sheets lists the Excel/Sheets links.
+  // Handled here (not as a manifest category) so it stays behind the gate above.
+  if (segments.length === 2 && segments[0] === PROTECTED_SHELF_ID && segments[1] === SHEETS_SLUG) {
+    return <ExcelLinks />;
   }
 
   const category = findCategoryByPath(segments);

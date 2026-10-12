@@ -140,6 +140,9 @@ body { display: block; place-items: normal; }
 .trk-cta.lld{ border-color:#2f9e57; background:rgba(74,222,128,.06); }
 .trk-cta.lld:hover{ background:rgba(74,222,128,.12); }
 .trk-cta.lld .trk-cta-go{ color:#4ade80; }
+.trk-cta.sheets{ border-color:rgba(245,165,36,.4); background:rgba(245,165,36,.06); }
+.trk-cta.sheets:hover{ background:rgba(245,165,36,.12); }
+.trk-cta.sheets .trk-cta-go{ color:#f5a524; }
 
 .nb-search{ display:flex; align-items:center; gap:9px; background:var(--surface);
   border:1px solid var(--border); border-radius:9px; padding:9px 13px; margin-bottom:14px; }
@@ -171,6 +174,7 @@ body { display: block; place-items: normal; }
   padding:3px 7px; border-radius:5px; border:1px solid; flex:none; }
 .b-md{ color:#4ade80; border-color:rgba(74,222,128,.4); background:rgba(74,222,128,.08); }
 .b-pdf{ color:#f2708a; border-color:rgba(242,112,138,.4); background:rgba(242,112,138,.08); }
+.b-sheet{ color:#34d17e; border-color:rgba(52,209,126,.4); background:rgba(52,209,126,.08); }
 
 .nb-reader-bar{ display:flex; align-items:center; gap:12px; margin-bottom:16px; }
 .nb-open-raw{ margin-left:auto; display:inline-flex; align-items:center; gap:5px;
